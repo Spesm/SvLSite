@@ -73,6 +73,11 @@ select, input, textarea {
   border-radius: 5px;
   border: 2px solid #8fb339;
   background-color: white;
+  font-family: inherit;
+  font-size: 16px;
+}
+.radiogroup > label {
+  margin-bottom: 0;
 }
 .radio {
   margin: 0 0 0 10px;
@@ -81,7 +86,7 @@ select, input, textarea {
   display: inline-block;
   margin: 0;
 }
-.formfield input[type=radio] {
+.radiogroup input {
   appearance: none;
   width: 20px;
   height: 20px;
@@ -90,12 +95,12 @@ select, input, textarea {
   margin: 5px;
   transform: translateY(10px);
 }
-.formfield input[type=radio]:checked {
+.radiogroup input:checked {
   background-color: #8fb339;
   border: 2px solid #2a4d14;
   transition: 0.5s;
 }
-.formfield input[type=submit] {
+.button input {
   appearance: none;
   width: 100px;
   padding: 10px;
@@ -104,7 +109,7 @@ select, input, textarea {
   border: 2px solid #8fb339;
   color: #f5f9e9;
 }
-.formfield input[type=submit]:hover {
+.button input:hover {
   background-color: #f5f9e9;
   border: 2px solid #2a4d14;
   color: #0d1b2a;

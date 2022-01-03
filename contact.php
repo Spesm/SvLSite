@@ -42,7 +42,7 @@
                         <label for="telephone_number">Telephone number</label>
                         <input type="text" id="telephone_number" name="telephone_number">
                     </div>
-                    <div class="formfield">
+                    <div class="formfield radiogroup">
                         <label for="communication">Communication</label>
                         <div class="radio">
                             <input type="radio" id="email" name="communication" value="email">
@@ -53,11 +53,11 @@
                             <label for="telephone">Telephone</label>
                         </div>
                     </div>
-                    <div class="formfield">
+                    <div class="formfield textarea">
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="4"></textarea>
                     </div>
-                    <div class="formfield">
+                    <div class="formfield button">
                         <input type="submit" value="Submit">
                     </div>
                 </form>

@@ -79,6 +79,11 @@ select, input, textarea {
     border-radius: 5px;
     border: 2px solid $applegreen;
     background-color: white;
+    font-family: inherit;
+    font-size: 16px;
+}
+.radiogroup > label {
+    margin-bottom: 0;
 }
 .radio {
     margin: 0 0 0 10px;
@@ -87,7 +92,7 @@ select, input, textarea {
     display: inline-block;
     margin: 0;
 }
-.formfield input[type=radio] {
+.radiogroup input {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -96,12 +101,12 @@ select, input, textarea {
     margin: 5px;
     transform: translateY(10px);
 }
-.formfield input[type=radio]:checked {
+.radiogroup input:checked {
     background-color: $applegreen;
     border: 2px solid $lincolngreen;
     transition: 0.5s;
 }
-.formfield input[type=submit] {
+.button input{
     appearance: none;
     width: 100px;
     padding: 10px;
@@ -110,7 +115,7 @@ select, input, textarea {
     border: 2px solid $applegreen;
     color: $ivory;
 }
-.formfield input[type=submit]:hover {
+.button input:hover {
     background-color: $ivory;
     border: 2px solid $lincolngreen;
     color: $richblack;
