@@ -1,4 +1,112 @@
 body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: serif;
+  font-size: 20px;
+  color: #0d1b2a;
+  background-color: #3f4045;
+}
+a {
+  text-decoration: none;
+  color: #8fb339;
+}
+.page {
+  margin: 25px auto;
+  width: 70vw;
+  background-color: #8fb339;
+  border-radius: 30px;
+  padding: 20px;
+}
+.header {
+  text-align: center;
   background-color: #2a4d14;
-  color: white;
+  padding: 5px 0 10px;
+  border-radius: 10px 10px 0 0;
+  color: #f5f9e9;
+  font-size: 24px;
+}
+.menu ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #2a4d14;
+  padding: 10px;
+  margin-top: 3px;
+  border-radius: 0 0 10px 10px;
+}
+.menu a {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  width: 100px;
+  padding: 10px;
+  margin: 5px;
+  border: 2px solid #8fb339;
+  border-radius: 5px;
+  color: #f5f9e9;
+}
+.menu a:hover {
+  background-color: #f5f9e9;
+  color: #0d1b2a;
+  border-color: #3f4045;
+  transition: 0.5s;
+}
+.content {
+  background-color: #f5f9e9;
+  padding: 10px;
+  border: 3px solid #2a4d14;
+  border-radius: 10px;
+  min-height: 50vh;
+}
+.formfield {
+  display: block;
+  padding: 10px;
+}
+.formfield select, input[type=text], textarea {
+  box-sizing: content-box;
+  outline: none;
+  resize: none;
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #8fb339;
+}
+.formfield input[type=radio] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  border: 2px solid #8fb339;
+  background-color: white;
+  margin: 5px;
+  transform: translateY(8px);
+}
+.formfield input[type=radio]:checked {
+  background-color: #8fb339;
+  border: 2px solid #2a4d14;
+  transition: 0.5s;
+}
+.formfield input[type=submit] {
+  appearance: none;
+  width: 100px;
+  padding: 10px;
+  background-color: #2a4d14;
+  border-radius: 5px;
+  border: 2px solid #8fb339;
+  color: #f5f9e9;
+}
+.formfield input[type=submit]:hover {
+  background-color: #f5f9e9;
+  border: 2px solid #2a4d14;
+  color: #0d1b2a;
+  transition: 0.5s;
+}
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #2a4d14;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: #f5f9e9;
 }
