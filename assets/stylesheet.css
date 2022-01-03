@@ -67,11 +67,12 @@ a {
 }
 .formfield p {
   margin-top: -5px;
-  font-size: 16px;
+  font-size: 14px;
 }
 select, input, textarea {
   outline: none;
   resize: none;
+  box-sizing: border-box;
   width: 30%;
   padding: 10px;
   border-radius: 5px;
@@ -79,9 +80,6 @@ select, input, textarea {
   background-color: white;
   font-family: inherit;
   font-size: 16px;
-}
-.select select {
-  box-sizing: content-box;
 }
 .radiogroup > label {
   margin-bottom: 0;

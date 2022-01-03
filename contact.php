@@ -1,8 +1,58 @@
 <?php
-    $contactName = $contactEmail = $contactPhone = $contactCommunication = $contactMessage = 'Sem';
-    $genderError = $nameError = $emailError = $phoneError = $messageError = true;
-    $genderNotification = $nameNotification = $emailNotification = $phoneNotification = $messageNotification = "This field is required";
-    $formFieldErrorStyle = ' style="background-color: #d1eebe;"'
+    $contactGender = $contactName = $contactEmail = $contactPhone = $communication = $contactMessage = "";
+    $genderAlert = $nameAlert = $emailAlert = $phoneAlert = $messageAlert = "";
+    $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
+    $formComplete = false;
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["gender"])) {
+            $genderAlert = "Salutation is required";
+        } else {
+            $contactGender = secure($_POST["gender"]);
+        }
+        if (empty($_POST["user_name"])) {
+            $nameAlert = "Name is required";
+        } else {
+            $contactName = secure($_POST["user_name"]);
+            $nameAlert = !preg_match("/^[a-zA-Z-' ]*$/", $contactName) ? "Name is not permitted" : $nameAlert;
+        }
+        if (empty($_POST["email_address"])) {
+            $emailAlert = "Email is required";
+        } else {
+            $contactEmail = secure($_POST["email_address"]);
+            $emailAlert = !filter_var($contactEmail, FILTER_VALIDATE_EMAIL) ? "Email is not valid" : $emailAlert;
+        }
+        if (empty($_POST["telephone_number"])) {
+            $phoneAlert = "Telephone number is required";
+        } else {
+            $contactPhone = secure($_POST["telephone_number"]);
+            $phoneAlert = !is_numeric($contactPhone) || strlen($contactPhone) <> 10 ? "Telephone number is not valid" : $phoneAlert;
+        }
+        $communication = secure($_POST["communication"]);
+        if (empty($_POST["message"])) {
+            $messageAlert = "Message is required";
+        } else {
+            $contactMessage = secure($_POST["message"]);
+        }
+        switch ($contactGender) {
+            case "male":
+                $salutation = "Mr.";
+                break;
+            case "female":
+                $salutation = "Ms.";
+                break;
+            default:
+                $salutation = "Mx.";
+        }
+        if (!$genderAlert && !$nameAlert && !$emailAlert && !$telephoneAlert && !$messageAlert) {
+            $formComplete = true;
+        }
+    }
+
+    function secure($inputData)
+    {
+        return htmlspecialchars(stripslashes(trim($inputData)));
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,44 +77,44 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <div class="formfield select">
                         <label for="salutation">Salutation</label>
-                        <select id="salutation" name="gender" <?php echo $genderError ? $formFieldErrorStyle : ""; ?>>
+                        <select id="salutation" name="gender" <?php echo $genderAlert ? $formFieldErrorStyle : ""; ?>>
                             <option value="" disabled selected>Please select one</option>
-                            <option value="male" <?php echo $gender == "male" ? "selected" : ""; ?>>Mr.</option>
-                            <option value="female" <?php echo $gender == "female" ? "selected" : ""; ?>>Ms.</option>
-                            <option value="neutral" <?php echo $gender == "neutral" ? "selected" : ""; ?>>Mx.</option>
+                            <option value="male" <?php echo $contactGender == "male" ? "selected" : ""; ?>>Mr.</option>
+                            <option value="female" <?php echo $contactGender == "female" ? "selected" : ""; ?>>Ms.</option>
+                            <option value="neutral" <?php echo $contactGender == "neutral" ? "selected" : ""; ?>>Mx.</option>
                         </select>
-                        <?php echo $genderError ? '<p class="error">' . $genderNotification . '</p>' : ""; ?>
+                        <?php echo $genderAlert ? '<p class="error">' . $genderAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield text">
                         <label for="user_name">Name</label>
-                        <input type="text" id="user_name" name="user_name" placeholder="Your Name" <?php echo ($nameError ? $formFieldErrorStyle : "") . ($contactName ? ' value="' . $contactName . '"' : ""); ?>>
-                        <?php echo $nameError ? '<p class="error">' . $nameNotification . '</p>' : ""; ?>
+                        <input type="text" id="user_name" name="user_name" placeholder="Your Name" <?php echo ($nameAlert ? $formFieldErrorStyle : "") . ($contactName ? ' value="' . $contactName . '"' : ""); ?>>
+                        <?php echo $nameAlert ? '<p class="error">' . $nameAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield text">
                         <label for="email_address">Email</label>
-                        <input type="text" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailError ? $formFieldErrorStyle : "") . ($contactEmail ? ' value="' . $contactEmail . '"' : ""); ?>>
-                        <?php echo $emailError ? '<p class="error">' . $emailNotification . '</p>' : ""; ?>
+                        <input type="text" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($contactEmail ? ' value="' . $contactEmail . '"' : ""); ?>>
+                        <?php echo $emailAlert ? '<p class="error">' . $emailAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield text">
                         <label for="telephone_number">Telephone number</label>
-                        <input type="text" id="telephone_number" name="telephone_number" placeholder="0611223344" <?php echo ($phoneError ? $formFieldErrorStyle : "") . ($contactPhone ? ' value="' . $contactPhone . '"' : ""); ?>>
-                        <?php echo $phoneError ? '<p class="error">' . $phoneNotification . '</p>' : ""; ?>
+                        <input type="text" id="telephone_number" name="telephone_number" placeholder="0611223344" <?php echo ($phoneAlert ? $formFieldErrorStyle : "") . ($contactPhone ? ' value="' . $contactPhone . '"' : ""); ?>>
+                        <?php echo $phoneAlert ? '<p class="error">' . $phoneAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield radiogroup">
                         <label for="communication">Communication</label>
                         <div class="radio">
-                            <input type="radio" id="email" name="communication" value="email" <?php echo $contactCommunication != "telephone" ? ' checked="checked"' : ""; ?>>
+                            <input type="radio" id="email" name="communication" value="email" <?php echo $communication != "telephone" ? ' checked="checked"' : ""; ?>>
                             <label for="email">Email</label>
                         </div>
                         <div class="radio">
-                            <input type="radio" id="telephone" name="communication" value="telephone" <?php echo $contactCommunication == "telephone" ? ' checked="checked"' : ""; ?>>
+                            <input type="radio" id="telephone" name="communication" value="telephone" <?php echo $communication == "telephone" ? ' checked="checked"' : ""; ?>>
                             <label for="telephone">Telephone</label>
                         </div>
                     </div>
                     <div class="formfield textarea">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" <?php echo $messageError ? $formFieldErrorStyle : ""; ?>><?php echo $contactMessage ?></textarea>
-                        <?php echo $messageError ? '<p class="error">' . $messageNotification . '</p>' : ""; ?>
+                        <textarea id="message" name="message" rows="4" <?php echo $messageAlert ? $formFieldErrorStyle : ""; ?>><?php echo $contactMessage ?></textarea>
+                        <?php echo $messageAlert ? '<p class="error">' . $messageAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield button">
                         <input type="submit" value="Submit">
