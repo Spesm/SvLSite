@@ -65,34 +65,53 @@ a {
     min-height: 50vh;
 }
 .formfield {
-    display: block;
-    padding: 10px;
+    margin: 10px 0 20px;
 }
-.formfield select, input[type=text], textarea {
-    box-sizing: content-box;
+.formfield * {
+    display: block;
+    margin: 10px;
+}
+.formfield p {
+    margin-top: -5px;
+    font-size: 14px;
+}
+select, input, textarea {
     outline: none;
     resize: none;
+    box-sizing: border-box;
     width: 30%;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid $applegreen;
+    background-color: white;
+    font-family: inherit;
+    font-size: 16px;
 }
-.formfield input[type=radio] {
+.radiogroup > label {
+    margin-bottom: 0;
+}
+.radio {
+    margin: 0 0 0 10px;
+}
+.radio * {
+    display: inline-block;
+    margin: 0;
+}
+.radiogroup input {
     appearance: none;
     width: 20px;
     height: 20px;
-    border-radius: 50px;
+    border-radius: 50%;
     border: 2px solid $applegreen;
-    background-color: white;
     margin: 5px;
-    transform: translateY(8px);
+    transform: translateY(10px);
 }
-.formfield input[type=radio]:checked {
+.radiogroup input:checked {
     background-color: $applegreen;
     border: 2px solid $lincolngreen;
     transition: 0.5s;
 }
-.formfield input[type=submit] {
+.button input{
     appearance: none;
     width: 100px;
     padding: 10px;
@@ -101,11 +120,37 @@ a {
     border: 2px solid $applegreen;
     color: $ivory;
 }
-.formfield input[type=submit]:hover {
+.button input:hover {
     background-color: $ivory;
     border: 2px solid $lincolngreen;
     color: $richblack;
     transition: 0.5s;
+}
+.response {
+    background-color: $applegreen;
+    border: 2px solid $lincolngreen;
+    border-radius: 10px;
+    padding: 0 15px 15px;
+    margin: 0 10px;
+}
+.details {
+    background-color: $lincolngreen;
+    color: $ivory;
+    margin: 0 -15px;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+}
+.details p {
+    margin: 5px 10px;
+}
+.response > p {
+    margin: 10px 5px;
+}
+.message {
+    padding: 0 10px;
+    background-color: $ivory;
+    border-radius: 10px;
+    border: 2px solid $lincolngreen;
 }
 .footer {
     display: flex;
