@@ -128,12 +128,19 @@ function secure($inputData)
         <?php else : ?>
             <div class="content">
                 <p>Thank you! Your message was successfully posted.</p>
-                <p>Message details:</p>
-                <?php echo "<p>Your name: " . $salutation . " " . $contactName . "</p>"; ?>
-                <?php echo "<p>Your email: " . $contactEmail . "</p>"; ?>
-                <?php echo "<p>Your telephone number: " . $contactPhone . "</p>"; ?>
-                <?php echo "<p>Contact by " . $communication . "</p>"; ?>
-                <?php echo "<p>Your message: " . $contactMessage . "</p>"; ?>
+                <p>Your details:</p>
+                <div class="response">
+                    <div class="details">
+                        <?php echo "<p>Name: " . $salutation . " " . $contactName . "</p>"; ?>
+                        <?php echo "<p>Email: " . $contactEmail . "</p>"; ?>
+                        <?php echo "<p>Telephone: " . $contactPhone . "</p>"; ?>
+                    </div>
+                    <?php echo "<p>Contact by " . $communication . "</p>"; ?>
+                    <p>Your message:</p>
+                    <div class="message">
+                        <?php echo "<p>" . $contactMessage . "</p>"; ?>
+                    </div>
+                </div>
                 <p>Thanks for your input!</p>
             </div>
         <?php endif; ?>

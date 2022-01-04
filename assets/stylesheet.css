@@ -120,6 +120,32 @@ select, input, textarea {
   color: #0d1b2a;
   transition: 0.5s;
 }
+.response {
+  background-color: #8fb339;
+  border: 2px solid #2a4d14;
+  border-radius: 10px;
+  padding: 0 15px 15px;
+  margin: 0 10px;
+}
+.details {
+  background-color: #2a4d14;
+  color: #f5f9e9;
+  margin: 0 -15px;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+.details p {
+  margin: 5px 10px;
+}
+.response > p {
+  margin: 10px 5px;
+}
+.message {
+  padding: 0 10px;
+  background-color: #f5f9e9;
+  border-radius: 10px;
+  border: 2px solid #2a4d14;
+}
 .footer {
   display: flex;
   justify-content: flex-end;
