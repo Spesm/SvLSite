@@ -1,0 +1,11 @@
+# Check alternative settings on https://wiki.educom.nu/index.php?title=Design_Patterns_2.1:_Single_door_routing
+
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(\w+)$ ./index.php?page=$1
+# RewriteRule ^(\w+)(?:/(\d+))?.*?$ ./index.php?page=$1&id=$2
+# RewriteRule ^.*$ ./index.php?page=$1
