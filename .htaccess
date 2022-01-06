@@ -6,6 +6,6 @@ RewriteEngine On
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-RewriteRule ^(\w+)$ ./index.php?page=$1
+# RewriteRule ^(\w+)$ ./index.php?page=$1
 # RewriteRule ^(\w+)(?:/(\d+))?.*?$ ./index.php?page=$1&id=$2
-# RewriteRule ^.*$ ./index.php?page=$1
+RewriteRule ^.*$ ./index.php
