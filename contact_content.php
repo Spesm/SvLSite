@@ -1,84 +1,68 @@
 <?php
-$contactGender = $contactName = $contactEmail = $contactPhone = $communication = $contactMessage = "";
-$genderAlert = $nameAlert = $emailAlert = $phoneAlert = $messageAlert = "";
-$formFieldErrorStyle = ' style="background-color: #d1eebe;"';
-$formComplete = false;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["gender"])) {
-        $genderAlert = "Salutation is required";
-    } else {
-        $contactGender = secure($_POST["gender"]);
-    }
-    if (empty($_POST["user_name"])) {
-        $nameAlert = "Name is required";
-    } else {
-        $contactName = secure($_POST["user_name"]);
-        $nameAlert = !preg_match("/^[a-zA-Z-' ]*$/", $contactName) ? "Name is not permitted" : $nameAlert;
-    }
-    if (empty($_POST["email_address"])) {
-        $emailAlert = "Email is required";
-    } else {
-        $contactEmail = secure($_POST["email_address"]);
-        $emailAlert = !filter_var($contactEmail, FILTER_VALIDATE_EMAIL) ? "Email is not valid" : $emailAlert;
-    }
-    if (empty($_POST["telephone_number"])) {
-        $phoneAlert = "Telephone number is required";
-    } else {
-        $contactPhone = secure($_POST["telephone_number"]);
-        $phoneAlert = !is_numeric($contactPhone) || strlen($contactPhone) <> 10 ? "Telephone number is not valid" : $phoneAlert;
-    }
-    $communication = secure($_POST["communication"]);
-    if (empty($_POST["message"])) {
-        $messageAlert = "Message is required";
-    } else {
-        $contactMessage = secure($_POST["message"]);
-    }
-    switch ($contactGender) {
-        case "male":
-            $salutation = "Mr.";
-            break;
-        case "female":
-            $salutation = "Ms.";
-            break;
-        default:
-            $salutation = "Mx.";
-    }
-    if (!$genderAlert && !$nameAlert && !$emailAlert && !$phoneAlert && !$messageAlert) {
-        $formComplete = true;
-    }
-}
 
 function secure($inputData)
 {
     return htmlspecialchars(stripslashes(trim($inputData)));
 }
-?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>SvLSite</title>
-    <link rel="stylesheet" href="./assets/stylesheet.css">
-    <meta name="viewport" content="device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <div class="page">
-        <div class="header">
-            <h1>SvLSite - Home</h1>
-        </div>
-        <div class="menu">
-            <ul>
-                <li><a href="./html/index.html">Home</a></li>
-                <li><a href="./html/about.html">About</a></li>
-                <li><a href="./contact.php">Contact</a></li>
-            </ul>
-        </div>
+function showContactContent($render = true)
+{
+    $contactGender = $contactName = $contactEmail = $contactPhone = $communication = $contactMessage = "";
+    $genderAlert = $nameAlert = $emailAlert = $phoneAlert = $messageAlert = "";
+    $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
+    $formComplete = false;
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["gender"])) {
+            $genderAlert = "Salutation is required";
+        } else {
+            $contactGender = secure($_POST["gender"]);
+        }
+        if (empty($_POST["user_name"])) {
+            $nameAlert = "Name is required";
+        } else {
+            $contactName = secure($_POST["user_name"]);
+            $nameAlert = !preg_match("/^[a-zA-Z-' ]*$/", $contactName) ? "Name is not permitted" : $nameAlert;
+        }
+        if (empty($_POST["email_address"])) {
+            $emailAlert = "Email is required";
+        } else {
+            $contactEmail = secure($_POST["email_address"]);
+            $emailAlert = !filter_var($contactEmail, FILTER_VALIDATE_EMAIL) ? "Email is not valid" : $emailAlert;
+        }
+        if (empty($_POST["telephone_number"])) {
+            $phoneAlert = "Telephone number is required";
+        } else {
+            $contactPhone = secure($_POST["telephone_number"]);
+            $phoneAlert = !is_numeric($contactPhone) || strlen($contactPhone) <> 10 ? "Telephone number is not valid" : $phoneAlert;
+        }
+        $communication = secure($_POST["communication"]);
+        if (empty($_POST["message"])) {
+            $messageAlert = "Message is required";
+        } else {
+            $contactMessage = secure($_POST["message"]);
+        }
+        switch ($contactGender) {
+            case "male":
+                $salutation = "Mr.";
+                break;
+            case "female":
+                $salutation = "Ms.";
+                break;
+            default:
+                $salutation = "Mx.";
+        }
+        if (!$genderAlert && !$nameAlert && !$emailAlert && !$phoneAlert && !$messageAlert) {
+            $formComplete = true;
+        }
+    }
+    if ($render) : ?>
         <?php if (!$formComplete) : ?>
             <div class="content">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <div class="formfield hidden">
+                        <input type="hidden" name="form" value="contact">
+                    </div>
                     <div class="formfield select">
                         <label for="salutation">Salutation</label>
                         <select id="salutation" name="gender" <?php echo $genderAlert ? $formFieldErrorStyle : ""; ?>>
@@ -94,14 +78,14 @@ function secure($inputData)
                         <input type="text" id="user_name" name="user_name" placeholder="Your Name" <?php echo ($nameAlert ? $formFieldErrorStyle : "") . ($contactName ? ' value="' . $contactName . '"' : ""); ?>>
                         <?php echo $nameAlert ? '<p class="error">' . $nameAlert . '</p>' : ""; ?>
                     </div>
-                    <div class="formfield text">
+                    <div class="formfield email">
                         <label for="email_address">Email</label>
-                        <input type="text" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($contactEmail ? ' value="' . $contactEmail . '"' : ""); ?>>
+                        <input type="email" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($contactEmail ? ' value="' . $contactEmail . '"' : ""); ?>>
                         <?php echo $emailAlert ? '<p class="error">' . $emailAlert . '</p>' : ""; ?>
                     </div>
-                    <div class="formfield text">
+                    <div class="formfield tel">
                         <label for="telephone_number">Telephone number</label>
-                        <input type="text" id="telephone_number" name="telephone_number" placeholder="0611223344" <?php echo ($phoneAlert ? $formFieldErrorStyle : "") . ($contactPhone ? ' value="' . $contactPhone . '"' : ""); ?>>
+                        <input type="tel" id="telephone_number" name="telephone_number" placeholder="0611223344" <?php echo ($phoneAlert ? $formFieldErrorStyle : "") . ($contactPhone ? ' value="' . $contactPhone . '"' : ""); ?>>
                         <?php echo $phoneAlert ? '<p class="error">' . $phoneAlert . '</p>' : ""; ?>
                     </div>
                     <div class="formfield radiogroup">
@@ -144,12 +128,5 @@ function secure($inputData)
                 <p>Thanks for your input!</p>
             </div>
         <?php endif; ?>
-        <div class="footer">
-            <footer>
-                <p>&copy 2021 SvL</p>
-            </footer>
-        </div>
-    </div>
-</body>
-
-</html>
+    <?php endif;
+}
