@@ -1,6 +1,8 @@
 <?php
 
 $page = handleRequest();
+session_start();
+// $_SESSION['username'] = 'Sem';
 renderPage($page);
 
 function handleRequest()
@@ -49,22 +51,26 @@ function getFromPost($key = 'form', $default = 'home')
     }
 }
 
-function renderPage($page) {
+function renderPage($page)
+{
     startHtml();
     setHead();
     renderBody($page);
     endHtml();
 }
 
-function startHtml($do = true) {
-    if ($do) : ?>
+function startHtml($render = true)
+{
+    if ($render) : ?>
         <!DOCTYPE html>
         <html>
     <?php endif;
 }
 
-function setHead($do = true) {
-    if ($do) : ?>
+function setHead($render = true)
+{
+    if ($render) : ?>
+
         <head>
             <title>SvLSite</title>
             <link rel="stylesheet" href="./assets/stylesheet.css">
@@ -73,7 +79,8 @@ function setHead($do = true) {
     <?php endif;
 }
 
-function renderBody($page) {
+function renderBody($page)
+{
     startBody();
     showHeader($page);
     showMenu();
@@ -82,34 +89,52 @@ function renderBody($page) {
     endBody();
 }
 
-function startBody($do = true) {
-    if ($do) : ?>
-        <body>
-            <div class="page">
+function startBody($render = true)
+{
+    if ($render) : ?>
+    <body>
+        <div class="page">
     <?php endif;
 }
 
-function showHeader($page, $do = true) {
-    if ($do) : ?>
+function showHeader($page, $render = true)
+{
+    if ($render) : ?>
         <div class="header">
             <h1>SvLSite - <?php echo ucfirst($page) ?></h1>
+            <?php echo empty($_SESSION) ? 'Not logged in' : 'Welcome ' . $_SESSION['username']; ?>
         </div>
-    <?php endif;    
+    <?php endif;
 }
 
-function showMenu($do = true) {
-    if ($do) : ?>
+function showMenu($render = true)
+{
+    if ($render) : ?>
         <div class="menu">
-            <ul>
-                <li><a href="./home">Home</a></li>
-                <li><a href="./about">About</a></li>
-                <li><a href="./contact">Contact</a></li>
-            </ul>
+            <div class="navigation">
+                <ul>
+                    <li><a href="./home">Home</a></li>
+                    <li><a href="./about">About</a></li>
+                    <li><a href="./contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="session">
+                <ul>
+                    <?php if (empty($_SESSION)) : ?>
+                        <li><a href="./login">Login</a></li>
+                        <li><a href="./register">Register</a></li>
+                    <?php else : ?>
+                        <li><a href="./logout">Logout</a></li>
+                        <li><div><?php echo $_SESSION['username']; ?></div></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
-    <?php endif;    
+    <?php endif;
 }
 
-function showContent($page) {
+function showContent($page)
+{
     switch ($page) {
         case 'home':
             require 'home_content.php';
@@ -126,28 +151,31 @@ function showContent($page) {
         default:
             require('home_content.php');
             showHomeContent();
-   }
+    }
 }
 
-function showFooter($do = true) {
-    if ($do) : ?>
+function showFooter($render = true)
+{
+    if ($render) : ?>
         <div class="footer">
             <footer>
                 <p>&copy <?php echo date('Y'); ?> SvL</p>
             </footer>
         </div>
-    <?php endif;    
-}
-
-function endBody($do = true) {
-    if ($do) : ?>
-            </body>
-        <div>
     <?php endif;
 }
- 
-function endHtml($do = true) {
-    if ($do) : ?>
-        </html>
+
+function endBody($render = true)
+{
+    if ($render) : ?>
+        </body>
+    </div>
+    <?php endif;
+}
+
+function endHtml($render = true)
+{
+    if ($render) : ?>
+    </html>
     <?php endif;
 }
