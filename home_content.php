@@ -1,4 +1,5 @@
 <?php
+
 function showHomeContent($render = true)
 {
     if ($render) : ?>

@@ -133,7 +133,7 @@ function showFooter($do = true) {
     if ($do) : ?>
         <div class="footer">
             <footer>
-                <p>&copy 2021 SvL</p>
+                <p>&copy <?php echo date('Y'); ?> SvL</p>
             </footer>
         </div>
     <?php endif;    

@@ -1,4 +1,5 @@
 <?php
+
 function showAboutContent($render = true)
 {
     if ($render) : ?>
