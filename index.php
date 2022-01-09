@@ -1,9 +1,23 @@
 <?php
 
 $page = handleRequest();
+// echo $page;
 session_start();
 // $_SESSION['username'] = 'Sem';
 renderPage($page);
+
+function indexPages()
+{
+    $pages = [
+        'home',
+        'about',
+        'contact',
+        'register',
+        'login',
+        'logout',
+    ];
+    return $pages;
+}
 
 function handleRequest()
 {
@@ -21,21 +35,11 @@ function handleRequest()
     return $requestedPage;
 }
 
-function listPages()
-{
-    $pages = [
-        'home',
-        'about',
-        'contact',
-    ];
-    return $pages;
-}
-
 function getFromUrl($default = 'home')
 {
     $request = str_replace('/SvLSite/', '', $_SERVER['REQUEST_URI']);
     $urlParams = explode('/', $request);
-    if (in_array($urlParams[0], listPages())) {
+    if (in_array($urlParams[0], indexPages())) {
         return $urlParams[0];
     } else {
         return $default;
@@ -147,6 +151,18 @@ function showContent($page)
         case 'contact':
             require 'contact_content.php';
             showContactContent();
+            break;
+        case 'register':
+            require 'register_content.php';
+            showRegisterContent();
+            break;
+        case 'login':
+            require 'login_content.php';
+            showLoginContent();
+            break;
+        case 'logout':
+            require 'logout_content.php';
+            showLogoutContent();
             break;
         default:
             require('home_content.php');
