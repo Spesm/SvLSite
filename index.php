@@ -1,9 +1,8 @@
 <?php
 
+define('ROOT', __DIR__);
 $page = handleRequest();
-// echo $page;
 session_start();
-// $_SESSION['username'] = 'Sem';
 renderPage($page);
 
 function indexPages()
@@ -141,31 +140,31 @@ function showContent($page)
 {
     switch ($page) {
         case 'home':
-            require 'home_content.php';
+            require 'views/home_content.php';
             showHomeContent();
             break;
         case 'about':
-            require 'about_content.php';
+            require 'views/about_content.php';
             showAboutContent();
             break;
         case 'contact':
-            require 'contact_content.php';
+            require 'views/contact_content.php';
             showContactContent();
             break;
         case 'register':
-            require 'register_content.php';
+            require 'views/register_content.php';
             showRegisterContent();
             break;
         case 'login':
-            require 'login_content.php';
+            require 'views/login_content.php';
             showLoginContent();
             break;
         case 'logout':
-            require 'logout_content.php';
+            require 'views/logout_content.php';
             showLogoutContent();
             break;
         default:
-            require('home_content.php');
+            require 'views/home_content.php';
             showHomeContent();
     }
 }

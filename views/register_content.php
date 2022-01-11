@@ -38,19 +38,19 @@ function showRegisterContent($render = true)
             $passwordRepeatAlert = strlen($password) < 3 || $passwordRepeat != $password ? "Confirmation does not match a valid password" : $passwordRepeatAlert;
         }
         if (!$nameAlert && !$emailAlert && !$passwordAlert && !$passwordRepeatAlert) {
-            if (!is_dir(__DIR__  . '/storage')) {
-                mkdir(__DIR__ . '/storage');
+            if (!is_dir(ROOT . '/storage')) {
+                mkdir(ROOT. '/storage');
             }
-            if (!file_exists(__DIR__ . '/storage/users.txt')) {
-                file_put_contents(__DIR__ . '/storage/users.txt', '[email][name][password]');
+            if (!file_exists(ROOT. '/storage/users.txt')) {
+                file_put_contents(ROOT. '/storage/users.txt', '[email][name][password]');
             }            
-            $userFile = fopen(__DIR__ . '/storage/users.txt', 'r');
+            $userFile = fopen(ROOT. '/storage/users.txt', 'r');
             while (!feof($userFile)) {
                 $userEmails[] = explode('|', fgets($userFile))[0];
             }
             array_shift($userEmails);
             if (!in_array($userEmail, $userEmails)) {
-                file_put_contents(__DIR__ . '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
+                file_put_contents(ROOT. '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
                 $formComplete = true;
             } else {
                 $emailAlert = "This email has already been registered";
@@ -60,7 +60,7 @@ function showRegisterContent($render = true)
     if ($render) : ?>
         <?php if (!$formComplete) : ?>
             <div class="content">
-                <form method="post" action="index.php">
+                <form method="post" action="./register">
                     <div class="formfield hidden">
                         <input type="hidden" name="form" value="register">
                     </div>
