@@ -11,7 +11,7 @@ function showRegisterContent($render = true)
     $nameAlert = $emailAlert = $passwordAlert = $passwordRepeatAlert = "";
     $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
     $formComplete = false;
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["user_name"])) {
             $nameAlert = "Name is required";
@@ -39,22 +39,22 @@ function showRegisterContent($render = true)
         }
         if (!$nameAlert && !$emailAlert && !$passwordAlert && !$passwordRepeatAlert) {
             if (!is_dir(ROOT . '/storage')) {
-                mkdir(ROOT. '/storage');
+                mkdir(ROOT . '/storage');
             }
-            if (!file_exists(ROOT. '/storage/users.txt')) {
-                file_put_contents(ROOT. '/storage/users.txt', '[email][name][password]');
-            }            
-            $userFile = fopen(ROOT. '/storage/users.txt', 'r');
+            if (!file_exists(ROOT . '/storage/users.txt')) {
+                file_put_contents(ROOT . '/storage/users.txt', '[email][name][password]');
+            }
+            $userFile = fopen(ROOT . '/storage/users.txt', 'r');
             while (!feof($userFile)) {
                 $userEmails[] = explode('|', fgets($userFile))[0];
             }
             array_shift($userEmails);
             if (!in_array($userEmail, $userEmails)) {
-                file_put_contents(ROOT. '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
+                file_put_contents(ROOT . '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
                 $formComplete = true;
             } else {
                 $emailAlert = "This email has already been registered";
-            }  
+            }
         }
     }
     if ($render) : ?>
@@ -95,5 +95,5 @@ function showRegisterContent($render = true)
                 <p>You can now login with your username and password.</p>
             </div>
         <?php endif; ?>
-    <?php endif;
+<?php endif;
 }

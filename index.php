@@ -1,6 +1,8 @@
 <?php
 
 define('ROOT', __DIR__);
+define('HOME', 'http://localhost/SvLSite');
+
 $page = handleRequest();
 session_start();
 renderPage($page);
@@ -128,7 +130,7 @@ function showMenu($render = true)
                         <li><a href="./register">Register</a></li>
                     <?php else : ?>
                         <li><a href="./logout">Logout</a></li>
-                        <li><div><?php echo $_SESSION['username']; ?></div></li>
+                        <li><div><?php echo explode(" ", $_SESSION['username'])[0]; ?></div></li>
                     <?php endif; ?>
                 </ul>
             </div>

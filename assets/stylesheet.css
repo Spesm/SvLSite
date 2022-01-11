@@ -64,12 +64,13 @@ a {
 }
 .menu li div {
   text-align: center;
-  width: 100px;
+  white-space: nowrap;
   padding: 10px;
+  width: 100px;
   margin: 5px;
   border: 2px solid #3f4045;
   border-radius: 5px;
-  background-color: #f5f9e9;
+  background-color: #8fb339;
   color: #0d1b2a;
 }
 .content {

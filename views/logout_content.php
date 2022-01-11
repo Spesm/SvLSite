@@ -1,5 +1,8 @@
 <?php
 
+session_unset();
+header('Location:' . HOME . '/home');
+
 function showLogoutContent($render = true)
 {
     if ($render) : ?>
