@@ -10,7 +10,6 @@ function showLoginContent($render = true)
     $userEmail = $password = "";
     $emailAlert = $passwordAlert = $loginError = "";
     $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
-    $formComplete = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["email_address"])) {
@@ -46,28 +45,26 @@ function showLoginContent($render = true)
         }
     }
     if ($render) : ?>
-        <?php if (!$formComplete) : ?>
-            <div class="content">
-                <form method="post" action="./login">
-                    <div class="formfield hidden">
-                        <input type="hidden" name="form" value="login">
-                    </div>
-                    <div class="formfield email">
-                        <label for="email_address">Email</label>
-                        <input type="email" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($userEmail ? ' value="' . $userEmail . '"' : ""); ?>>
-                        <?php echo $emailAlert ? '<p class="error">' . $emailAlert . '</p>' : ""; ?>
-                    </div>
-                    <div class="formfield password">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Your Password" <?php echo ($passwordAlert ? $formFieldErrorStyle : "") . ($password ? ' value="' . $password . '"' : ""); ?>>
-                        <?php echo $passwordAlert ? '<p class="error">' . $passwordAlert . '</p>' : ""; ?>
-                    </div>
-                    <?php echo $loginError ? '<p>' . $loginError . '</p>' : ''; ?>
-                    <div class="formfield button">
-                        <input type="submit" value="Submit">
-                    </div>
-                </form>
-            </div>
-        <?php endif; ?>
-<?php endif;
+        <div class="content">
+            <form method="post" action="./login">
+                <div class="formfield hidden">
+                    <input type="hidden" name="form" value="login">
+                </div>
+                <div class="formfield email">
+                    <label for="email_address">Email</label>
+                    <input type="email" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($userEmail ? ' value="' . $userEmail . '"' : ""); ?>>
+                    <?php echo $emailAlert ? '<p class="error">' . $emailAlert . '</p>' : ""; ?>
+                </div>
+                <div class="formfield password">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Your Password" <?php echo ($passwordAlert ? $formFieldErrorStyle : "") . ($password ? ' value="' . $password . '"' : ""); ?>>
+                    <?php echo $passwordAlert ? '<p class="error">' . $passwordAlert . '</p>' : ""; ?>
+                </div>
+                <?php echo $loginError ? '<p>' . $loginError . '</p>' : ''; ?>
+                <div class="formfield button">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    <?php endif;
 }
