@@ -38,7 +38,23 @@ function showRegisterContent($render = true)
             $passwordRepeatAlert = strlen($password) < 3 || $passwordRepeat != $password ? "Confirmation does not match a valid password" : $passwordRepeatAlert;
         }
         if (!$nameAlert && !$emailAlert && !$passwordAlert && !$passwordRepeatAlert) {
-            $formComplete = true;
+            if (!is_dir(__DIR__  . '/storage')) {
+                mkdir(__DIR__ . '/storage');
+            }
+            if (!file_exists(__DIR__ . '/storage/users.txt')) {
+                file_put_contents(__DIR__ . '/storage/users.txt', '[email][name][password]');
+            }            
+            $userFile = fopen(__DIR__ . '/storage/users.txt', 'r');
+            while (!feof($userFile)) {
+                $userEmails[] = explode('|', fgets($userFile))[0];
+            }
+            array_shift($userEmails);
+            if (!in_array($userEmail, $userEmails)) {
+                file_put_contents(__DIR__ . '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
+                $formComplete = true;
+            } else {
+                $emailAlert = "This email has already been registered";
+            }  
         }
     }
     if ($render) : ?>
