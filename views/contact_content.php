@@ -59,7 +59,7 @@ function showContactContent($render = true)
     if ($render) : ?>
         <?php if (!$formComplete) : ?>
             <div class="content">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="post" action="./contact">
                     <div class="formfield hidden">
                         <input type="hidden" name="form" value="contact">
                     </div>

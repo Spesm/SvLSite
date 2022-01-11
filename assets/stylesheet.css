@@ -25,14 +25,22 @@ a {
   color: #f5f9e9;
   font-size: 24px;
 }
-.menu ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: flex-end;
+.menu {
   background-color: #2a4d14;
   padding: 10px;
-  margin-top: 3px;
+  margin: 3px 0 20px;
   border-radius: 0 0 10px 10px;
+}
+.menu div {
+  display: inline-block;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  list-style-type: none;
+  display: inline-block;
 }
 .menu a {
   display: inline-block;
@@ -50,6 +58,20 @@ a {
   color: #0d1b2a;
   border-color: #3f4045;
   transition: 0.5s;
+}
+.menu .session {
+  float: right;
+}
+.menu li div {
+  text-align: center;
+  white-space: nowrap;
+  padding: 10px;
+  width: 100px;
+  margin: 5px;
+  border: 2px solid #3f4045;
+  border-radius: 5px;
+  background-color: #8fb339;
+  color: #0d1b2a;
 }
 .content {
   background-color: #f5f9e9;
