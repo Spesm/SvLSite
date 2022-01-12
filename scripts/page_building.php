@@ -50,7 +50,7 @@ function showHeader($page, $render = true)
     if ($render) : ?>
         <div class="header">
             <h1>SvLSite - <?php echo ucfirst($page) ?></h1>
-            <?php echo empty($_SESSION) ? 'Not logged in' : 'Welcome ' . $_SESSION['username']; ?>
+            <p><?php echo empty($_SESSION) ? 'Not logged in' : 'Welcome ' . $_SESSION['username']; ?></p>
         </div>
     <?php endif;
 }
