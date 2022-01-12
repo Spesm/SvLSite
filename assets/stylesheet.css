@@ -5,17 +5,20 @@ body {
   font-size: 20px;
   color: #0d1b2a;
   background-color: #3f4045;
+  background-image: url('seamless_cork.jpg');
+  background-repeat: repeat;
 }
 a {
   text-decoration: none;
   color: #8fb339;
 }
 .page {
-  margin: 25px auto;
   width: 70vw;
+  margin: 25px auto;
+  padding: 20px;
   background-color: #8fb339;
   border-radius: 30px;
-  padding: 20px;
+  box-shadow: 2px 2px 15px 5px #3f4045;
 }
 .header {
   text-align: center;
