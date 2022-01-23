@@ -14,10 +14,8 @@ if (file_exists('../storage/users.txt')) {
     foreach ($users as $user) {
         $user[] = createId(6);
         $user[] = 1;
-        print_r($user);
         $processed++;
         $imploded = "('" . implode("', '", $user) . "')" . ($processed < count($users) ? ", " : ";");
-        echo $imploded . PHP_EOL;
         $insertValues .= $imploded;
     }
 }

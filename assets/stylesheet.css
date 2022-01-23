@@ -3,7 +3,7 @@ body {
   box-sizing: border-box;
   font-family: serif;
   font-size: 20px;
-  color: #0d1b2a;
+  color: #f5f9e9;
   background-color: #3f4045;
   background-image: url('seamless_cork.jpg');
   background-repeat: repeat;
@@ -82,6 +82,7 @@ a {
   border: 3px solid #2a4d14;
   border-radius: 10px;
   min-height: 50vh;
+  color: #3f4045;
 }
 .formfield {
   margin: 10px 0 20px;

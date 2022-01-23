@@ -1,9 +1,14 @@
 <?php
 
-function secure($inputData)
-{
-    return htmlspecialchars(stripslashes(trim($inputData)));
-}
+require_once 'scripts/form_handling.php';
+
+$response = processRegistration();
+print_r($response);
+
+// function secure($inputData)
+// {
+//     return htmlspecialchars(stripslashes(trim($inputData)));
+// }
 
 function showRegisterContent($render = true)
 {
@@ -60,7 +65,7 @@ function showRegisterContent($render = true)
     if ($render) : ?>
         <?php if (!$formComplete) : ?>
             <div class="content">
-                <form method="post" action="./register">
+                <form method="post" action="./register" novalidate>
                     <div class="formfield hidden">
                         <input type="hidden" name="form" value="register">
                     </div>
