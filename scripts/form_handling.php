@@ -1,5 +1,7 @@
 <?php
 
+require_once 'query_pdo.php';
+
 function openPost()
 {
     return filter_input_array(INPUT_POST);
@@ -18,7 +20,7 @@ function createAlert($subject = 'input', $problem = 'unspecified')
         'invalid' => ucfirst($subject) . ' is not valid',
         'refused' => ucfirst($subject) . ' is not permitted',
         'strength' => ucfirst($subject) . ' should have at least three characters',
-        'failed' => ucfirst($subject) . ' failed',
+        'mismatch' => ucfirst($subject) . ' does not match the original input',
     ];
 
     if (array_key_exists($problem, $alerts)) {
@@ -105,7 +107,7 @@ function comparePasswords($postKeyOne, $postKeyTwo, $required = true)
     } elseif (!validatePassword($passwordRepeat)) {
         $alert = createAlert('password', 'strength');
     } elseif ($passwordRepeat != $password) {
-        $alert = createAlert('password confirmation', 'failed');
+        $alert = createAlert('password confirmation', 'mismatch');
     }
 
     return [$postKeyTwo => [
@@ -133,5 +135,11 @@ function processRegistration()
 
 function registerUser($credentials)
 {
+    $values = "('" . implode("', '", $credentials) . "')";
     print_r($credentials);
+    echo nl2br("\n" . $values . "\n");
+}
+
+function createId($table) {
+
 }
