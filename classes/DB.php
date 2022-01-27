@@ -1,12 +1,13 @@
 <?php
 
-require_once '../config.php';
+require_once ROOT . '/config.php';
 
 class DB
 {
     public static $pdo;
+    public static $stmt;
 
-    public function __construct()
+    public static function connect()
     {
         $host = DBHOST;
         $dbname = DBNAME;
@@ -23,16 +24,32 @@ class DB
             self::$pdo = new PDO($dsn, $user, $password, $options);
             echo nl2br("PDO instance created successfully \n");
         } catch (PDOException $error) {
-            throw new PDOException($error->getMessage());
+            echo nl2br("PDO exception: " . $error->getMessage() . "\n");
+            exit;
         }
     }
 
     public static function query($sql)
     {
-        return self::$pdo->query($sql);
+        self::connect();
+        $result = self::$pdo->query($sql);
+        self::destruct();
+
+        return $result;
     }
 
-    public function __destruct()
+    public static function prepare($statement)
+    {
+        self::connect();
+        return self::$stmt = self::$pdo->prepare($statement);
+    }
+
+    public static function execute($data)
+    {
+        self::$stmt->execute($data);
+    }
+
+    public static function destruct()
     {
         self::$pdo = null;
         echo nl2br("PDO instance destroyed successfully \n");

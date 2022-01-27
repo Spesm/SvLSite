@@ -1,12 +1,12 @@
 <?php
 
-require_once 'config.php';
+require_once '../config.php';
 
 function qpdo($query)
 {
     $host = DBHOST;
-    $username = DBUSER;
-    $password = DBPWD;
+    $username = 'root';
+    $password = '';
     $dbname = DBNAME;
 
     try {

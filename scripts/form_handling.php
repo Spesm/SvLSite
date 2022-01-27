@@ -1,6 +1,6 @@
 <?php
 
-require_once 'query_pdo.php';
+require_once ROOT . '/models/User.php';
 
 function openPost()
 {
@@ -111,7 +111,7 @@ function comparePasswords($postKeyOne, $postKeyTwo, $required = true)
     }
 
     return [$postKeyTwo => [
-        'value' => $password,
+        'value' => $passwordRepeat,
         'alert' => $alert,
     ]];
 }
@@ -120,8 +120,8 @@ function processRegistration()
 {
     $output = ['complete' => false];
 
-    $output += processName('user_name');
-    $output += processEmail('email_address');
+    $output += processName('username');
+    $output += processEmail('email');
     $output += processPassword('password');
     $output += comparePasswords('password', 'password_repeat');
 
@@ -133,13 +133,13 @@ function processRegistration()
     return $output;
 }
 
-function registerUser($credentials)
+function registerUser($userData)
 {
-    $values = "('" . implode("', '", $credentials) . "')";
-    print_r($credentials);
-    echo nl2br("\n" . $values . "\n");
-}
+    $user = [
+        'username' => $userData[0],
+        'email' => $userData[1],
+        'password' => $userData[2],
+    ];
 
-function createId($table) {
-
+    User::create($user);
 }
