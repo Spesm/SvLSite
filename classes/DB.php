@@ -4,7 +4,7 @@ require_once '../config.php';
 
 class DB
 {
-    public $pdo;
+    public static $pdo;
 
     public function __construct()
     {
@@ -20,21 +20,21 @@ class DB
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ];
         try {
-            $this->pdo = new PDO($dsn, $user, $password, $options);
+            self::$pdo = new PDO($dsn, $user, $password, $options);
             echo nl2br("PDO instance created successfully \n");
         } catch (PDOException $error) {
             throw new PDOException($error->getMessage());
         }
     }
 
-    public function query($sql)
+    public static function query($sql)
     {
-        return $this->pdo->query($sql);
+        return self::$pdo->query($sql);
     }
 
     public function __destruct()
     {
-        $this->pdo = null;
+        self::$pdo = null;
         echo nl2br("PDO instance destroyed successfully \n");
     }
 }

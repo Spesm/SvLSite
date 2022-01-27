@@ -8,3 +8,6 @@ $test->query('SELECT id FROM users');
 
 $user = new User();
 $user->getUsedIds();
+
+DB::query('SELECT id FROM users');
+User::getUsedIds();
