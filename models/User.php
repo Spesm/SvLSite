@@ -17,6 +17,18 @@ class User extends DB
         return $result;
     }
 
+    public static function getUsedEmails()
+    {
+        $query = self::query("SELECT email FROM users");
+        $result = [];
+
+        while ($row = $query->fetch()) {
+            $result[] = $row['email'];
+        }
+
+        return $result;
+    }
+
     public static function setId()
     {
         $usedIds = self::getUsedIds();
@@ -33,12 +45,12 @@ class User extends DB
         self::prepare("INSERT INTO users (id, username, email, pass) VALUES (:id, :username, :email, :pass)");
 
         $userData = [
-            'id' => self::setId(),
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'pass' => $user['password']
+            'id'        => self::setId(),
+            'username'  => $user['username'],
+            'email'     => $user['email'],
+            'pass'      => $user['password']
         ];
-        
+
         self::execute($userData);
         self::destruct();
     }

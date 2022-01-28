@@ -15,12 +15,13 @@ function secure($inputData)
 function createAlert($subject = 'input', $problem = 'unspecified')
 {
     $alerts = [
-        'unspecified' => ucfirst($problem) . ' ' . $subject . ' error',
-        'required' => ucfirst($subject) . ' is required',
-        'invalid' => ucfirst($subject) . ' is not valid',
-        'refused' => ucfirst($subject) . ' is not permitted',
-        'strength' => ucfirst($subject) . ' should have at least three characters',
-        'mismatch' => ucfirst($subject) . ' does not match the original input',
+        'unspecified'   => ucfirst($problem) . ' ' . $subject . ' error',
+        'required'      => ucfirst($subject) . ' is required',
+        'invalid'       => ucfirst($subject) . ' is not valid',
+        'duplicate'     => ucfirst($subject) . ' is already registered',
+        'refused'       => ucfirst($subject) . ' is not permitted',
+        'strength'      => ucfirst($subject) . ' should have at least three characters',
+        'mismatch'      => ucfirst($subject) . ' does not match the original input',
     ];
 
     if (array_key_exists($problem, $alerts)) {
@@ -57,7 +58,7 @@ function validateEmail($email)
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-function processEmail($postKey, $required = true)
+function processEmail($postKey, $required = true, $unique = true)
 {
     $email = secure(openPost()[$postKey]);
     $alert = '';
@@ -66,6 +67,8 @@ function processEmail($postKey, $required = true)
         $alert = createAlert('email', 'required');
     } elseif (!validateEmail($email)) {
         $alert = createAlert('email', 'invalid');
+    } elseif ($unique && in_array($email, User::getUsedEmails())) {
+        $alert = createAlert('email', 'duplicate');
     }
 
     return [$postKey => [

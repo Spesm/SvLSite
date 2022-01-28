@@ -22,9 +22,9 @@ class DB
         ];
         try {
             self::$pdo = new PDO($dsn, $user, $password, $options);
-            echo nl2br("PDO instance created successfully \n");
+            // echo nl2br("PDO instance created successfully \n");
         } catch (PDOException $error) {
-            echo nl2br("PDO exception: " . $error->getMessage() . "\n");
+            // echo nl2br("PDO exception: " . $error->getMessage() . "\n");
             exit;
         }
     }
@@ -52,6 +52,6 @@ class DB
     public static function destruct()
     {
         self::$pdo = null;
-        echo nl2br("PDO instance destroyed successfully \n");
+        // echo nl2br("PDO instance destroyed successfully \n");
     }
 }
