@@ -54,4 +54,15 @@ class User extends DB
         self::execute($userData);
         self::destruct();
     }
+
+    public static function getUserBy($email)
+    {
+        self::prepare("SELECT * FROM users WHERE email = :email");
+
+        self::execute(['email' => $email]);
+        $user = self::fetch();
+        self::destruct();
+
+        return $user;
+    }
 }

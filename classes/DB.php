@@ -44,9 +44,14 @@ class DB
         return self::$stmt = self::$pdo->prepare($statement);
     }
 
-    public static function execute($data)
+    public static function execute($queryVars)
     {
-        self::$stmt->execute($data);
+        self::$stmt->execute($queryVars);
+    }
+
+    public static function fetch()
+    {
+        return self::$stmt->fetch();
     }
 
     public static function destruct()

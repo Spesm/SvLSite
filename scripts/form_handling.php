@@ -20,8 +20,9 @@ function createAlert($subject = 'input', $problem = 'unspecified')
         'invalid'       => ucfirst($subject) . ' is not valid',
         'duplicate'     => ucfirst($subject) . ' is already registered',
         'refused'       => ucfirst($subject) . ' is not permitted',
-        'strength'      => ucfirst($subject) . ' should have at least three characters',
+        'strength'      => ucfirst($subject) . ' must have at least three characters',
         'mismatch'      => ucfirst($subject) . ' does not match the original input',
+        'failed'        => ucfirst($subject) . ' failed with this email and password'
     ];
 
     if (array_key_exists($problem, $alerts)) {
@@ -117,6 +118,35 @@ function comparePasswords($postKeyOne, $postKeyTwo, $required = true)
         'value' => $passwordRepeat,
         'alert' => $alert,
     ]];
+}
+
+function processLogin()
+{
+    $output = ['complete' => false];
+
+    $output += processEmail('email', 1, 0);
+    $output += processPassword('password');
+
+    if (!implode(array_column($output, 'alert'))) {
+        $output['complete'] = true;
+        $output += loginUser($output['email']['value'], $output['password']['value']);
+    }
+
+    return $output;
+}
+
+function loginUser($email, $password)
+{
+    $user = User::getUserBy($email);
+
+    if (!$user || $user['pass'] !== $password) {
+        $alert = createAlert('login', 'failed');
+        return ['login_error' => $alert];
+    } else {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $email;
+        header('Location:' . HOME . '/home');
+    }
 }
 
 function processRegistration()
