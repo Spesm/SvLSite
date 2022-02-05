@@ -18,11 +18,12 @@ function createAlert($subject = 'input', $problem = 'unspecified')
         'unspecified'   => ucfirst($problem) . ' ' . $subject . ' error',
         'required'      => ucfirst($subject) . ' is required',
         'invalid'       => ucfirst($subject) . ' is not valid',
+        'incorrect'     => ucfirst($subject) . ' must have ten numeral digits',
         'duplicate'     => ucfirst($subject) . ' is already registered',
         'refused'       => ucfirst($subject) . ' is not permitted',
         'strength'      => ucfirst($subject) . ' must have at least three characters',
         'mismatch'      => ucfirst($subject) . ' does not match the original input',
-        'failed'        => ucfirst($subject) . ' failed with this email and password'
+        'failed'        => ucfirst($subject) . ' failed with this email and password',
     ];
 
     if (array_key_exists($problem, $alerts)) {
@@ -30,6 +31,21 @@ function createAlert($subject = 'input', $problem = 'unspecified')
     } else {
         return $alerts['unspecified'];
     }
+}
+
+function processGender($postKey, $required = true)
+{
+    $gender = array_key_exists($postKey, openPost()) ? secure(openPost()[$postKey]) : '';
+    $alert = '';
+
+    if ($required && !$gender) {
+        $alert = createAlert('salutation', 'required');
+    }
+
+    return [$postKey => [
+        'value' => $gender,
+        'alert' => $alert,
+    ]];
 }
 
 function validateName($name)
@@ -74,6 +90,52 @@ function processEmail($postKey, $required = true, $unique = true)
 
     return [$postKey => [
         'value' => $email,
+        'alert' => $alert,
+    ]];
+}
+
+function validateTelephone($number)
+{
+    return is_numeric($number) && strlen($number) === 10;
+}
+
+function processTelephone($postKey, $required = true)
+{
+    $number = secure(openPost()[$postKey]);
+    $alert = '';
+
+    if ($required && !$number) {
+        $alert = createAlert('telephone number', 'required');
+    } elseif (!validateTelephone($number)) {
+        $alert = createAlert('telephone number', 'incorrect');
+    }
+
+    return [$postKey => [
+        'value' => $number,
+        'alert' => $alert,
+    ]];
+}
+
+function processCommunication($postKey)
+{
+    $communication = secure(openPost()[$postKey]);
+
+    return [$postKey => [
+        'value' => $communication,
+    ]];
+}
+
+function processMessage($postKey, $required = true)
+{
+    $message = secure(openPost()[$postKey]);
+    $alert = '';
+
+    if ($required && !$message) {
+        $alert = createAlert('message', 'required');
+    }
+
+    return [$postKey => [
+        'value' => $message,
         'alert' => $alert,
     ]];
 }
@@ -175,4 +237,22 @@ function registerUser($userData)
     ];
 
     User::create($user);
+}
+
+function processContact()
+{
+    $output = ['complete' => false];
+
+    $output += processGender('gender');
+    $output += processName('username');
+    $output += processEmail('email');
+    $output += processTelephone('number');
+    $output += processCommunication('communication');
+    $output += processMessage('message');
+
+    if (!implode(array_column($output, 'alert'))) {
+        $output['complete'] = true;
+    }
+
+    return $output;
 }

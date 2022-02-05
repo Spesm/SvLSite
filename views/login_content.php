@@ -6,7 +6,6 @@ function showLoginContent($render = true)
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $input = processLogin();
-        // print_r($input);
         $formFieldErrorStyle = 'style="background-color: #d1eebe;"';
     }
     if ($render) : ?>
