@@ -4,10 +4,15 @@ require_once ROOT . '/scripts/form_handling.php';
 
 function showContactContent($render = true)
 {   
+    // $input = [];
+    // print_r($_SESSION);
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $input = processContact();
         $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
     }
+    // echo nl2br("here\n");
+    // print_r($input);
+    // echo nl2br("\nend");
     if ($render) : ?>
         <?php if (!isset($input) || !$input['complete']) : ?>
             <div class="content">
