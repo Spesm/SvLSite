@@ -245,7 +245,7 @@ function processContact()
 
     $output += processGender('gender');
     $output += processName('username');
-    $output += processEmail('email');
+    $output += processEmail('email', 1, 0);
     $output += processTelephone('number');
     $output += processCommunication('communication');
     $output += processMessage('message');
