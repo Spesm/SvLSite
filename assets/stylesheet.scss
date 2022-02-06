@@ -1,27 +1,32 @@
 $lincolngreen: #2a4d14;
 $applegreen: #8fb339;
+$mildgreen: #d1eebe;
 $ivory: #f5f9e9;
 $onyx: #3f4045;
 $richblack: #0d1b2a;
+$cork: url('seamless_cork.jpg');
 
 body {
     margin: 0;
     box-sizing: border-box;
     font-family: serif;
     font-size: 20px;
-    color: $richblack;
+    color: $ivory;
     background-color: $onyx;
+    background-image: $cork;
+    background-repeat: repeat;
 }
 a {
     text-decoration: none;
     color: $applegreen;
 }
 .page {
-    margin: 25px auto;
     width: 70vw;
+    margin: 25px auto;
+    padding: 20px;
     background-color: $applegreen;
     border-radius: 30px;
-    padding: 20px;
+    box-shadow: 2px 2px 15px 5px $onyx;
 }
 .header {
     text-align: center;
@@ -85,6 +90,7 @@ a {
     border: 3px solid $lincolngreen;
     border-radius: 10px;
     min-height: 50vh;
+    color: $onyx;
 }
 .formfield {
     margin: 10px 0 20px;

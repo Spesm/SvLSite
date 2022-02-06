@@ -1,13 +1,13 @@
 <?php
 
-include 'scripts/request_handling.php';
-include 'scripts/page_building.php';
+require_once 'scripts/request_handling.php';
+require_once 'scripts/page_building.php';
 
 define('ROOT', __DIR__);
 define('HOME', 'http://localhost/SvLSite');
+session_start();
 
 $page = handleRequest();
-session_start();
 renderPage($page);
 
 function indexPages()

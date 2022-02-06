@@ -1,88 +1,39 @@
 <?php
 
-function secure($inputData)
-{
-    return htmlspecialchars(stripslashes(trim($inputData)));
-}
+require_once ROOT . '/scripts/form_handling.php';
 
 function showRegisterContent($render = true)
 {
-    $userName = $userEmail = $password = $passwordRepeat = "";
-    $nameAlert = $emailAlert = $passwordAlert = $passwordRepeatAlert = "";
-    $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
-    $formComplete = false;
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["user_name"])) {
-            $nameAlert = "Name is required";
-        } else {
-            $userName = secure($_POST["user_name"]);
-            $nameAlert = !preg_match("/^[a-zA-Z-' ]*$/", $userName) ? "Name is not permitted" : $nameAlert;
-        }
-        if (empty($_POST["email_address"])) {
-            $emailAlert = "Email is required";
-        } else {
-            $userEmail = secure($_POST["email_address"]);
-            $emailAlert = !filter_var($userEmail, FILTER_VALIDATE_EMAIL) ? "Email is not valid" : $emailAlert;
-        }
-        if (empty($_POST["password"])) {
-            $passwordAlert = "Password is required";
-        } else {
-            $password = secure($_POST["password"]);
-            $passwordAlert = strlen($password) < 3 ? "Password must at least have three characters" : $passwordAlert;
-        }
-        if (empty($_POST["password_repeat"])) {
-            $passwordRepeatAlert = "Repeat password is required";
-        } else {
-            $passwordRepeat = secure($_POST["password_repeat"]);
-            $passwordRepeatAlert = strlen($password) < 3 || $passwordRepeat != $password ? "Confirmation does not match a valid password" : $passwordRepeatAlert;
-        }
-        if (!$nameAlert && !$emailAlert && !$passwordAlert && !$passwordRepeatAlert) {
-            if (!is_dir(ROOT . '/storage')) {
-                mkdir(ROOT . '/storage');
-            }
-            if (!file_exists(ROOT . '/storage/users.txt')) {
-                file_put_contents(ROOT . '/storage/users.txt', '[email][name][password]');
-            }
-            $userFile = fopen(ROOT . '/storage/users.txt', 'r');
-            while (!feof($userFile)) {
-                $userEmails[] = explode('|', fgets($userFile))[0];
-            }
-            array_shift($userEmails);
-            if (!in_array($userEmail, $userEmails)) {
-                file_put_contents(ROOT . '/storage/users.txt', "\n" . $userEmail . '|' . $userName . '|' . $password, FILE_APPEND);
-                $formComplete = true;
-            } else {
-                $emailAlert = "This email has already been registered";
-            }
-        }
+        $input = processRegistration();
+        $formFieldErrorStyle = 'style="background-color: #d1eebe;"';
     }
     if ($render) : ?>
-        <?php if (!$formComplete) : ?>
+        <?php if (!isset($input) || !$input['complete']) : ?>
             <div class="content">
-                <form method="post" action="./register">
+                <form method="post" action="./register" novalidate>
                     <div class="formfield hidden">
                         <input type="hidden" name="form" value="register">
                     </div>
                     <div class="formfield text">
-                        <label for="user_name">Name</label>
-                        <input type="text" id="user_name" name="user_name" placeholder="Your Name" <?php echo ($nameAlert ? $formFieldErrorStyle : "") . ($userName ? ' value="' . $userName . '"' : ""); ?>>
-                        <?php echo $nameAlert ? '<p class="error">' . $nameAlert . '</p>' : ""; ?>
+                        <label for="username">Name</label>
+                        <input type="text" id="username" name="username" placeholder="Your Name" <?php echo (isset($input) && $input['username']['alert'] ? $formFieldErrorStyle : "") . (isset($input['username']['value']) ? ' value="' . $input['username']['value'] . '"' : ""); ?>>
+                        <?php echo isset($input['username']['alert']) ? '<p class="error">' . $input['username']['alert'] . '</p>' : ""; ?>
                     </div>
                     <div class="formfield email">
-                        <label for="email_address">Email</label>
-                        <input type="email" id="email_address" name="email_address" placeholder="you@mail.com" <?php echo ($emailAlert ? $formFieldErrorStyle : "") . ($userEmail ? ' value="' . $userEmail . '"' : ""); ?>>
-                        <?php echo $emailAlert ? '<p class="error">' . $emailAlert . '</p>' : ""; ?>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@mail.com" <?php echo (isset($input) && $input['email']['alert'] ? $formFieldErrorStyle : "") . (isset($input['email']['value']) ? ' value="' . $input['email']['value'] . '"' : ""); ?>>
+                        <?php echo isset($input['email']['alert']) ? '<p class="error">' . $input['email']['alert'] . '</p>' : ""; ?>
                     </div>
                     <div class="formfield password">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Your Password" <?php echo ($passwordAlert ? $formFieldErrorStyle : "") . ($password ? ' value="' . $password . '"' : ""); ?>>
-                        <?php echo $passwordAlert ? '<p class="error">' . $passwordAlert . '</p>' : ""; ?>
+                        <input type="password" id="password" name="password" placeholder="Your Password" <?php echo (isset($input) && $input['password']['alert'] ? $formFieldErrorStyle : "") . (isset($input['password']['value']) ? ' value="' . $input['password']['value'] . '"' : ""); ?>>
+                        <?php echo isset($input['password']['alert']) ? '<p class="error">' . $input['password']['alert'] . '</p>' : ""; ?>
                     </div>
                     <div class="formfield password">
                         <label for="password_repeat">Confirm password</label>
-                        <input type="password" id="password_repeat" name="password_repeat" placeholder="Your Password" <?php echo ($passwordRepeatAlert ? $formFieldErrorStyle : "") . ($passwordRepeat ? ' value="' . $passwordRepeat . '"' : ""); ?>>
-                        <?php echo $passwordRepeatAlert ? '<p class="error">' . $passwordRepeatAlert . '</p>' : ""; ?>
+                        <input type="password" id="password_repeat" name="password_repeat" placeholder="Your Password" <?php echo (isset($input) && $input['password_repeat']['alert'] ? $formFieldErrorStyle : "") . (isset($input['password_repeat']['value']) ? ' value="' . $input['password_repeat']['value'] . '"' : ""); ?>>
+                        <?php echo isset($input['password_repeat']['alert']) ? '<p class="error">' . $input['password_repeat']['alert'] . '</p>' : ""; ?>
                     </div>
                     <div class="formfield button">
                         <input type="submit" value="Submit">
