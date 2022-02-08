@@ -11,8 +11,8 @@ class DB
     {
         $host = DBHOST;
         $dbname = DBNAME;
-        $user = 'root';
-        $password = '';
+        $user = DBUSER;
+        $password = DBPWD;
         $charset = DBCHARS;
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
