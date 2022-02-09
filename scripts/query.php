@@ -35,7 +35,6 @@ function createUserTable() {
         `id` CHAR(6) UNIQUE NOT NULL,
         `name` VARCHAR(255) NOT NULL,
         `email` VARCHAR(255) UNIQUE NOT NULL,
-        `reg` TINYINT(1) UNSIGNED DEFAULT 0 NOT NULL,
         `password` VARCHAR(255),
         `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -52,7 +51,7 @@ function createProductTable()
         `name` VARCHAR(255) UNIQUE NOT NULL,
         `description` VARCHAR(255),
         `price` FLOAT(10, 2) UNSIGNED,
-        `stock` SMALLINT DEFAULT 0 NOT NULL,
+        `stock` SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
         `image` VARCHAR(255),
         `show` TINYINT(1) UNSIGNED DEFAULT 1 NOT NULL,
         `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -62,4 +61,5 @@ function createProductTable()
     qpdo($query);
 }
 
-createProductTable();
+// createUserTable();
+// createProductTable();
