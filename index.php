@@ -16,6 +16,7 @@ function indexPages()
         'home',
         'about',
         'contact',
+        'webshop',
         'register',
         'login',
         'logout',
