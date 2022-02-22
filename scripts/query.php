@@ -1,6 +1,7 @@
 <?php
 
 require_once '../config.php';
+require_once '../classes/ID.php';
 
 function qpdo($query)
 {
@@ -21,14 +22,16 @@ function qpdo($query)
     $pdo = null;
 }
 
-function createDatabase() {
+function createDatabase()
+{
 
     $query = "CREATE DATABASE svlsite";
 
     qpdo($query);
 }
 
-function createUserTable() {
+function createUserTable()
+{
 
     $query = "CREATE TABLE users (
         `nr` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -50,7 +53,7 @@ function createProductTable()
         `id` CHAR(6) UNIQUE NOT NULL,
         `name` VARCHAR(255) UNIQUE NOT NULL,
         `description` VARCHAR(255),
-        `price` FLOAT(10, 2) UNSIGNED,
+        `price` DOUBLE UNSIGNED,
         `stock` SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
         `image` VARCHAR(255),
         `show` TINYINT(1) UNSIGNED DEFAULT 1 NOT NULL,
@@ -61,5 +64,20 @@ function createProductTable()
     qpdo($query);
 }
 
+function feedProductTable()
+{
+    $query = "INSERT INTO products (`id`, `name`, `description`, `price`, `image`) VALUES
+        ('" . ID::create() . "', 'Tennis Ball', 'Essential equipment for tennis players of all levels', 1.25, 'tennis_ball.jpg'),
+        ('" . ID::create() . "', 'Felix', 'Furry, playful, cute and now available for a special discount price', 25.00, 'felix_cat.jpg'),
+        ('" . ID::create() . "', 'Nuclear Fusion Reactor', 'Simply heat to 150 million degrees Celsius and collect enough energy to cook your eggs for a week', 21000000000.99, 'fusion_reactor.jpg'),
+        ('" . ID::create() . "', 'Bottle of Wine', 'Enjoy the finer things in life', 7.50, 'wine_bottle.jpg'),
+        ('" . ID::create() . "', 'T-shirt', 'Perfect for any casual occasion', 17.95, 't-shirt.jpg'),
+        ('" . ID::create() . "', 'Villa Aurora', 'Buy a fresco with a dickpic and get this house for next to nothing', 471000000, 'villa_aurora.jpg')
+    ";
+
+    qpdo($query);
+}
+
 // createUserTable();
 // createProductTable();
+// feedProductTable();

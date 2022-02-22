@@ -5,9 +5,9 @@ require_once ROOT . '/classes/ID.php';
 
 class Product extends DB
 {
-    public static function getProductList()
+    public static function getProducts()
     {
-        $query = self::query("SELECT `id`, `name`, 'price', `image` FROM products WHERE show='1'");
+        $query = self::query("SELECT `id`, `name`, `price`, `image` FROM products WHERE `show` = 1");
         $result = [];
 
         while ($row = $query->fetch()) {

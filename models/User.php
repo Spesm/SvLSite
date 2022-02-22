@@ -33,6 +33,7 @@ class User extends DB
     {
         $usedIds = self::getUsedIds();
 
+        $id = 0;
         do {
             $id = ID::create();
         } while (in_array($id, $usedIds));

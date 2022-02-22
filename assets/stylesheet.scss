@@ -189,3 +189,35 @@ select, input, textarea {
     border-radius: 10px;
     color: $ivory;
 }
+.product_header {
+    text-align: center;
+    color: $lincolngreen;
+}
+.product_index {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product_card {
+    width: 350px;
+    height: 600px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: $lincolngreen;
+    border: 2px solid $applegreen;
+    color: $ivory;
+}
+.product_name {
+    min-height: 80px;
+}
+img {
+    width: 300px;
+    height: 300px;
+    display: block;
+    object-fit: contain;
+    margin: auto;
+    background-color: #fff;
+    border: 5px solid #fff;
+}
