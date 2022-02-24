@@ -191,6 +191,9 @@ select, input, textarea {
 }
 .product-header {
     text-align: center;
+}
+.product-name {
+    text-shadow: 2px 2px 4px $ivory;
     color: $lincolngreen;
 }
 .product-index {
@@ -202,12 +205,12 @@ select, input, textarea {
     height: 600px;
     padding: 10px;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     border-radius: 10px;
     text-align: center;
-    background-color: $lincolngreen;
-    border: 2px solid $applegreen;
-    color: $ivory;
+    background-color: $applegreen;
+    box-shadow: 2px 2px 15px 5px $onyx;
+    color: $lincolngreen;
 }
 .product-name {
     min-height: 80px;
@@ -223,12 +226,14 @@ img {
 }
 .price-tag {
     background-color: $ivory;
-    margin: 20px;
+    margin: 30px 20px;
     padding: 20px;
-    border-radius: 10px;
+    min-width: 120px;
     float: right;
-    color: $lincolngreen;
-    border: 2px solid $applegreen;
+    color: $richblack;
+    text-align: right;
+    box-shadow: 1px 1px 2px 2px $lincolngreen;
+    border-radius: 10px;
 }
 .euros {
     display: inline;

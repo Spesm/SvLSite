@@ -40,6 +40,9 @@ function formatEuros($price)
 function formatCents($price)
 {
     $cents = strpos($price, '.') ? substr($price, strpos($price, '.') + 1, 2) : '00';
+    if (strlen($cents) < 2) {
+        $cents .= '0';
+    }
 
     return $cents;
 }
@@ -55,5 +58,5 @@ function showProductCard($product)
                 <h4 class="cents"><?php echo formatCents($product['price']) ?></h4>
             </span>
         </div>
-<?php endif;
+    <?php endif;
 }

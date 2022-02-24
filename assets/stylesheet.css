@@ -183,6 +183,9 @@ select, input, textarea {
 }
 .product-header {
   text-align: center;
+}
+.product-name {
+  text-shadow: 2px 2px 4px #f5f9e9;
   color: #2a4d14;
 }
 .product-index {
@@ -194,12 +197,12 @@ select, input, textarea {
   height: 600px;
   padding: 10px;
   margin: auto;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border-radius: 10px;
   text-align: center;
-  background-color: #2a4d14;
-  border: 2px solid #8fb339;
-  color: #f5f9e9;
+  background-color: #8fb339;
+  box-shadow: 2px 2px 15px 5px #3f4045;
+  color: #2a4d14;
 }
 .product-name {
   min-height: 80px;
@@ -215,12 +218,14 @@ img {
 }
 .price-tag {
   background-color: #f5f9e9;
-  margin: 20px;
+  margin: 30px 20px;
   padding: 20px;
-  border-radius: 10px;
+  min-width: 120px;
   float: right;
-  color: #2a4d14;
-  border: 2px solid #8fb339;
+  color: #0d1b2a;
+  text-align: right;
+  box-shadow: 1px 1px 2px 2px #2a4d14;
+  border-radius: 10px;
 }
 .euros {
   display: inline;
