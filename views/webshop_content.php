@@ -57,6 +57,9 @@ function showProductCard($product)
                 <h2 class="euros"><?php echo formatEuros($product['price']) ?></h2>
                 <h4 class="cents"><?php echo formatCents($product['price']) ?></h4>
             </span>
+            <div class="product-action">
+                <button class="add-product-button" onclick="addToCart()">Buy</button>
+            </div>
         </div>
     <?php endif;
 }

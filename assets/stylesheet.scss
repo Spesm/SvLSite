@@ -141,12 +141,13 @@ select, input, textarea {
 }
 .button input{
     appearance: none;
-    width: 100px;
+    width: 125px;
     padding: 10px;
     background-color: $lincolngreen;
     border-radius: 5px;
     border: 2px solid $applegreen;
     color: $ivory;
+    font-size: 20px;
 }
 .button input:hover {
     background-color: $ivory;
@@ -202,7 +203,7 @@ select, input, textarea {
 }
 .product-card {
     width: 350px;
-    height: 600px;
+    height: 640px;
     padding: 10px;
     margin: auto;
     margin-bottom: 40px;
@@ -241,4 +242,27 @@ img {
 .cents {
     display: inline;
     vertical-align: top;    
+}
+.product-action {
+    width: 100%;
+    display: inline-block;
+}
+.add-product-button {
+    float: right;
+    appearance: none;
+    width: 160px;
+    margin: 0 20px 20px 0;
+    padding: 10px;
+    background-color: $lincolngreen;
+    color: $ivory;
+    border-radius: 5px;
+    border: 2px solid $ivory;
+    cursor: pointer;
+    font: inherit;
+}
+.add-product-button:hover {
+    background-color: $ivory;
+    border: 2px solid $onyx;
+    color: $richblack;
+    transition: 0.5s;
 }
