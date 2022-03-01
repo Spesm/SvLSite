@@ -33,17 +33,10 @@ a {
   padding: 10px;
   margin: 3px 0 20px;
   border-radius: 0 0 10px 10px;
-}
-.menu div {
-  display: inline-block;
-}
-.menu ul {
-  margin: 0;
-  padding: 0;
-}
-.menu li {
-  list-style-type: none;
-  display: inline-block;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .menu a {
   display: inline-block;
@@ -62,10 +55,32 @@ a {
   border-color: #3f4045;
   transition: 0.5s;
 }
-.menu .session {
-  float: right;
+.menu .cart {
+  margin-left: auto;
+  position: relative;
 }
-.menu li div {
+.menu .circle {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 30px;
+  position: relative;
+  right: 10px;
+}
+.menu .count {
+  background-color: #2a4d14;
+  border-radius: 50%;
+  border: 2px solid #8fb339;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  position: absolute;
+  left: 25px;
+  bottom: 35px;
+}
+.session div {
   text-align: center;
   white-space: nowrap;
   padding: 10px;
@@ -206,7 +221,7 @@ select, input, textarea {
   color: #2a4d14;
 }
 .product-name {
-  min-height: 80px;
+  min-height: 100px;
 }
 img {
   width: 300px;
@@ -219,7 +234,7 @@ img {
 }
 .price-tag {
   background-color: #f5f9e9;
-  margin: 30px 20px;
+  margin: 20px;
   padding: 20px;
   min-width: 120px;
   float: right;
@@ -242,36 +257,18 @@ img {
 .add-product-button {
   float: right;
   appearance: none;
-  width: 160px;
+  width: 125px;
   margin: 0 20px 20px 0;
   padding: 10px;
   background-color: #2a4d14;
   color: #f5f9e9;
   border-radius: 5px;
-  border: 2px solid #f5f9e9;
   cursor: pointer;
   font: inherit;
 }
 .add-product-button:hover {
   background-color: #f5f9e9;
   border: 2px solid #3f4045;
-  color: #0d1b2a;
-  transition: 0.5s;
-}
-.button input {
-  appearance: none;
-  width: 125px;
-  padding: 10px;
-  background-color: #2a4d14;
-  border-radius: 5px;
-  border: 2px solid #8fb339;
-  color: #f5f9e9;
-  font-size: 20px;
-  cursor: pointer;
-}
-.button input:hover {
-  background-color: #f5f9e9;
-  border: 2px solid #2a4d14;
   color: #0d1b2a;
   transition: 0.5s;
 }

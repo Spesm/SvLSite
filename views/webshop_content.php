@@ -5,7 +5,6 @@ require_once ROOT . '/models/product.php';
 function showWebshopContent($render = true)
 {
     $products = Product::getProducts();
-    // print_r($products);
 
     if ($render) : ?>
         <div class="content">
@@ -51,7 +50,7 @@ function showProductCard($product)
 {
     if ($product['id']) : ?>
         <div class="product-card">
-            <h2 class="product-name"><?php echo $product['name'] ?></h2>
+            <h1 class="product-name"><?php echo $product['name'] ?></h1>
             <img src="<?php echo HOME . '/storage/images/products/' . $product['image'] ?>">
             <span class="price-tag">
                 <h2 class="euros"><?php echo formatEuros($product['price']) ?></h2>
@@ -63,3 +62,10 @@ function showProductCard($product)
         </div>
     <?php endif;
 }
+?>
+
+<script>
+    function addToCart() {
+        alert("You clicked me");
+    }
+</script>

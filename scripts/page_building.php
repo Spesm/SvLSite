@@ -22,6 +22,7 @@ function setHead($render = true)
         <head>
             <title>SvLSite</title>
             <link rel="stylesheet" href="./assets/stylesheet.css">
+            <script src="https://kit.fontawesome.com/63de4c0f08.js" crossorigin="anonymous"></script>
             <meta name="viewport" content="device-width, initial-scale=1.0">
         </head>
     <?php endif;
@@ -57,6 +58,10 @@ function showHeader($page, $render = true)
 
 function showMenu($render = true)
 {
+    require_once ROOT . '/views/menu_content.php';
+    showMenuContent();
+    return;
+
     if ($render) : ?>
         <div class="menu">
             <div class="navigation">
