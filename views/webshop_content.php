@@ -66,6 +66,6 @@ function showProductCard($product)
 
 <script>
     function addToCart() {
-        alert("You clicked me");
+        alert('You clicked me!')
     }
 </script>

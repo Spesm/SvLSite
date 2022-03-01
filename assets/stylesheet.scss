@@ -63,11 +63,11 @@ a {
     border-color: $onyx;
     transition: 0.5s;
 }
-.menu .cart {
+.menu .shopping {
     margin-left: auto;
     position: relative;
 }
-.menu .circle {
+.menu .cart-circle {
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -75,7 +75,7 @@ a {
     position: relative;
     right: 10px;
 }
-.menu .count {
+.menu .product-count {
     background-color: $lincolngreen;
     border-radius: 50%;
     border: 2px solid $applegreen;
@@ -88,7 +88,7 @@ a {
     left: 25px;
     bottom: 35px;
 }
-.session div {
+.menu .username {
     text-align: center;
     white-space: nowrap;
     padding: 10px;
