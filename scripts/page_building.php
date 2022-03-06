@@ -23,6 +23,8 @@ function setHead($render = true)
             <title>SvLSite</title>
             <link rel="stylesheet" href="./assets/stylesheet.css">
             <script src="https://kit.fontawesome.com/63de4c0f08.js" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="<?php echo HOME . '../javascripts/jquery_functions.js' ?>"></script>
             <meta name="viewport" content="device-width, initial-scale=1.0">
         </head>
     <?php endif;

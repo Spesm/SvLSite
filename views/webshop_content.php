@@ -18,6 +18,23 @@ function showWebshopContent($render = true)
     <?php endif;
 }
 
+function showProductCard($product)
+{
+    if ($product['id']) : ?>
+        <div class="product-card">
+            <h1 class="product-name"><?php echo $product['name'] ?></h1>
+            <img src="<?php echo HOME . '/storage/images/products/' . $product['image'] ?>">
+            <span class="price-tag">
+                <h2 class="euros"><?php echo formatEuros($product['price']) ?></h2>
+                <h4 class="cents"><?php echo formatCents($product['price']) ?></h4>
+            </span>
+            <div class="product-action">
+                <button class="add-product-button">Buy</button>
+            </div>
+        </div>
+    <?php endif;
+}
+
 function formatEuros($price)
 {
     $euros = strpos($price, '.') ? substr($price, 0, strpos($price, '.')) : $price;
@@ -45,27 +62,3 @@ function formatCents($price)
 
     return $cents;
 }
-
-function showProductCard($product)
-{
-    if ($product['id']) : ?>
-        <div class="product-card">
-            <h1 class="product-name"><?php echo $product['name'] ?></h1>
-            <img src="<?php echo HOME . '/storage/images/products/' . $product['image'] ?>">
-            <span class="price-tag">
-                <h2 class="euros"><?php echo formatEuros($product['price']) ?></h2>
-                <h4 class="cents"><?php echo formatCents($product['price']) ?></h4>
-            </span>
-            <div class="product-action">
-                <button class="add-product-button" onclick="addToCart()">Buy</button>
-            </div>
-        </div>
-    <?php endif;
-}
-?>
-
-<script>
-    function addToCart() {
-        alert('You clicked me!')
-    }
-</script>
