@@ -24,7 +24,7 @@ function setHead($render = true)
             <link rel="stylesheet" href="./assets/stylesheet.css">
             <script src="https://kit.fontawesome.com/63de4c0f08.js" crossorigin="anonymous"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="<?php echo HOME . '../javascripts/jquery_functions.js' ?>"></script>
+            <script src="<?php echo HOME . '/javascripts/jquery_functions.js' ?>"></script>
             <meta name="viewport" content="device-width, initial-scale=1.0">
         </head>
     <?php endif;
@@ -62,31 +62,6 @@ function showMenu($render = true)
 {
     require_once ROOT . '/views/menu_content.php';
     showMenuContent();
-    return;
-
-    if ($render) : ?>
-        <div class="menu">
-            <div class="navigation">
-                <ul>
-                    <li><a href="./home">Home</a></li>
-                    <li><a href="./about">About</a></li>
-                    <li><a href="./contact">Contact</a></li>
-                    <li><a href="./webshop">Webshop</a></li>
-                </ul>
-            </div>
-            <div class="session">
-                <ul>
-                    <?php if (empty($_SESSION)) : ?>
-                        <li><a href="./login">Login</a></li>
-                        <li><a href="./register">Register</a></li>
-                    <?php else : ?>
-                        <li><a href="./logout">Logout</a></li>
-                        <li><div><?php echo explode(" ", $_SESSION['username'])[0]; ?></div></li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    <?php endif;
 }
 
 function showContent($page)

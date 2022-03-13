@@ -43,15 +43,15 @@ class User extends DB
 
     public static function create($user)
     {
-        self::prepare("INSERT INTO users (id, username, email, pass) VALUES (:id, :username, :email, :pass)");
+        self::prepare("INSERT INTO users (id, name, email, password) VALUES (:id, :name, :email, :password)");
 
         $userData = [
             'id'        => self::setId(),
-            'username'  => $user['username'],
+            'name'  => $user['username'],
             'email'     => $user['email'],
-            'pass'      => $user['password']
+            'password'      => $user['password']
         ];
-
+        
         self::execute($userData);
         self::destruct();
     }

@@ -201,11 +201,11 @@ function loginUser($email, $password)
 {
     $user = User::getUserBy($email);
 
-    if (!$user || $user['pass'] !== $password) {
+    if (!$user || $user['password'] !== $password) {
         $alert = createAlert('login', 'failed');
         return ['login_error' => $alert];
     } else {
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['username'] = $user['name'];
         $_SESSION['email'] = $email;
         header('Location:' . HOME . '/home');
     }
