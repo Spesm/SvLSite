@@ -58,7 +58,7 @@ function showHeader($page, $render = true)
     <?php endif;
 }
 
-function showMenu($render = true)
+function showMenu()
 {
     require_once ROOT . '/views/menu_content.php';
     showMenuContent();

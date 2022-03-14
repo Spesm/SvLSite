@@ -13,7 +13,6 @@ function showContactContent($render = true)
         $input = processContact();
         $formFieldErrorStyle = ' style="background-color: #d1eebe;"';
     }
-    print_r($_SESSION);
     if ($render) : ?>
         <?php if (!$input['complete']) : ?>
             <div class="content">
