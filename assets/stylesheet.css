@@ -227,7 +227,7 @@ select, input, textarea {
 .product-name {
   min-height: 100px;
 }
-img {
+.product-card img {
   width: 300px;
   height: 300px;
   display: block;
@@ -275,4 +275,25 @@ img {
   border: 2px solid #3f4045;
   color: #0d1b2a;
   transition: 0.5s;
+}
+.cart-item {
+  background-color: #8fb339;
+  border: 2px solid #2a4d14;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  margin: 0 5px;
+  object-fit: contain;
+  background-color: #fff;
+  border: 2px solid #fff;
+}
+.cart-item h3 {
+  color: #f5f9e9;
+  margin: 0 10px;
 }

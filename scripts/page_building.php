@@ -83,6 +83,10 @@ function showContent($page)
             require 'views/webshop_content.php';
             showWebshopContent();
             break;
+        case 'cart':
+            require 'views/cart_content.php';
+            showCartContent();
+            break;
         case 'register':
             require 'views/register_content.php';
             showRegisterContent();

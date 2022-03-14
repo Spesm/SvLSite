@@ -16,4 +16,15 @@ class Product extends DB
 
         return $result;
     }
+
+    public static function getProductBy($value, $key = 'id')
+    {
+        self::prepare("SELECT * FROM products WHERE " . $key . " = :" . $key);
+
+        self::execute([$key => $value]);
+        $product = self::fetch();
+        self::destruct();
+
+        return $product;
+    }
 }

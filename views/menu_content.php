@@ -13,7 +13,7 @@ function showMenuContent($render = true)
                 <a href="./webshop">Webshop</a>
             </div>
             <div class="shopping">
-                <a class="cart-circle" href="./webshop"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a class="cart-circle" href="./cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 <div class="product-count"><?php echo countProductsInCart() ?></div>
             </div>
             <div class="account">
