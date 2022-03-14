@@ -30,7 +30,7 @@ function showProductCard($product)
                 <h4 class="cents"><?php echo formatCents($product['price']) ?></h4>
             </span>
             <div class="product-action">
-                <button id="<?php echo $product['id'] ?>" class="add-product-button">Buy</button>
+                <button class="add-product-button" id="<?php echo $product['id'] ?>">Buy</button>
             </div>
         </div>
     <?php endif;

@@ -305,3 +305,35 @@ select, input, textarea {
     color: $ivory;
     margin: 0 10px;
 }
+.item-amount {
+    margin-left: auto;
+}
+.item-amount button {
+    height: 32px;
+    width: 32px;    
+    border-radius: 50%;
+    border: 2px solid $richblack;
+    line-height: 20px;
+    background-color: $lincolngreen;
+    font-size: 20px;
+    color: $ivory;
+    cursor: pointer;
+}
+.item-amount button:hover {
+    background-color: $ivory;
+    color: $richblack;
+    border: 2px solid $lincolngreen;
+    transition: 0.5s;
+}
+.item-amount .quantity {
+    border: 2px solid $lincolngreen;
+    width: 50px;
+    height: 40px;
+    margin: 0 5px;
+    line-height: 10px;
+    font-size: 20px;
+}
+.item-amount .quantity::-webkit-inner-spin-button,
+.item-amount .quantity::-webkit-outer-spin-button {
+    appearance: none;
+}

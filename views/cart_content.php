@@ -25,6 +25,11 @@ function showCartItem($item)
         <div class="cart-item">
             <img src="<?php echo HOME . '/storage/images/products/' . $product['image'] ?>">
             <h3><?php echo $product['name'] . ' - ' . formatEuros($product['price']) . formatCents($product['price']) ?></h3>
+            <div class="item-amount">
+                <button class="decrement" id="<?php echo 'dec-' . $item['id'] ?>"><i class="fa-solid fa-minus"></i></button>
+                <input type="number" class="quantity" id="<?php echo 'num-' . $item['id'] ?>" value="<?php echo $item['qty'] ?>" min="0" max="999">
+                <button class="increment" id="<?php echo 'inc-' . $item['id'] ?>"><i class="fa-solid fa-plus"></i></button>
+            </div>
         </div>
     <?php endif;
 }
