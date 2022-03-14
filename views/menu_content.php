@@ -1,5 +1,7 @@
 <?php
 
+require_once ROOT . '/scripts/shopping_cart.php';
+
 function showMenuContent($render = true)
 {
     if ($render) : ?>
@@ -12,10 +14,10 @@ function showMenuContent($render = true)
             </div>
             <div class="shopping">
                 <a class="cart-circle" href="./webshop"><i class="fa-solid fa-cart-shopping"></i></a>
-                <div class="product-count">8</div>
+                <div class="product-count"><?php echo countProductsInCart() ?></div>
             </div>
             <div class="account">
-                <?php if (empty($_SESSION)) : ?>
+                <?php if (empty($_SESSION['username'])) : ?>
                     <a href="./login">Login</a>
                     <a href="./register">Register</a>
                 <?php else : ?>

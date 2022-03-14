@@ -1,6 +1,7 @@
 <?php
 
-function addToCart($productId) {
+function addToCart($productId)
+{
     if (empty($_SESSION['cart'])) {
         $_SESSION['cart'] = [[
             'id' => $productId,
@@ -12,7 +13,13 @@ function addToCart($productId) {
             'qty' => 1,
         ];
     } else {
-        $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] ++;
+        $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty']++;
     }
-    print_r($_SESSION);
+}
+
+function countProductsInCart()
+{
+    $productCount = $_SESSION['cart'] ? array_sum(array_column($_SESSION['cart'], 'qty')) : 0;
+    
+    return $productCount;
 }

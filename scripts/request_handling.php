@@ -7,8 +7,15 @@ function handleRequest()
             $requestedPage = getFromUrl();
             break;
         case 'POST':
-            $requestedPage = getFromPost();
-            break;
+            // In case of an AJAX call to add a webshop product to the cart.
+            if (isset($_POST['productId'])) {
+                require_once 'scripts/shopping_cart.php';
+                addToCart($_POST['productId']);
+                exit;
+            } else {
+                $requestedPage = getFromPost();
+                break;
+            }
         default:
             $requestedPage = getFromUrl();
     }
