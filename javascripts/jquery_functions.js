@@ -13,7 +13,7 @@ $(document).ready(function(){
             } else {
                 return 0
             }
-        })
+        }).trigger('input')
     })
 
     $('.item-amount .increment').click(function() {
@@ -24,6 +24,11 @@ $(document).ready(function(){
             } else {
                 return 999
             }
-        })
+        }).trigger('input')
+    })
+
+    $('.item-amount .quantity').on('input', function() {
+        id = this.id.substring(4)
+        alert(id)
     })
 })
