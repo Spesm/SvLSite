@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
     $('.add-product-button').click(function() {
-        $('.product-count').text((_, present) => parseInt(present) + 1)
-        $.post('http://localhost/SvLSite/index.php', {productId: this.id})
+        $('#product-count').text((_, present) => parseInt(present) + 1)
+        $.post('http://localhost/SvLSite/index.php', {product: this.id})
     })
 
     $('.item-amount .decrement').click(function() {
@@ -28,7 +28,18 @@ $(document).ready(function(){
     })
 
     $('.item-amount .quantity').on('input', function() {
+        sum = 0
+        $('.item-amount .quantity').each(function() {
+            sum += +$(this).val()
+        })
+        $('#product-count').text(sum)
         id = this.id.substring(4)
-        alert(id)
+        qty = this.value
+        $.post('http://localhost/SvLSite/index.php', {product: id, quantity: qty}, function(data) {
+            alert(data)
+        })
+        // alert(id + ': ' + quantity)
+        // amount = this.val()
+        // $('#sub-' + id).text($('#num-' + id) * 2)
     })
 })

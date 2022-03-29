@@ -14,7 +14,7 @@ function showMenuContent($render = true)
             </div>
             <div class="shopping">
                 <a class="cart-circle" href="./cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                <div class="product-count"><?php echo countProductsInCart() ?></div>
+                <div id="product-count"><?php echo countProductsInCart() ?></div>
             </div>
             <div class="account">
                 <?php if (empty($_SESSION['username'])) : ?>

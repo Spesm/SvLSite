@@ -19,7 +19,7 @@ function addToCart($productId)
 
 function countProductsInCart()
 {
-    $productCount = $_SESSION['cart'] ? array_sum(array_column($_SESSION['cart'], 'qty')) : 0;
+    $productCount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'qty')) : 0;
     
     return $productCount;
 }

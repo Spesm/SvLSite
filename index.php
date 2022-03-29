@@ -1,14 +1,12 @@
 <?php
 
-require_once 'scripts/request_handling.php';
-require_once 'scripts/page_building.php';
+require_once 'classes/Request.php';
 
 define('ROOT', __DIR__);
 define('HOME', 'http://localhost/SvLSite');
 session_start();
 
-$page = handleRequest();
-renderPage($page);
+Request::handle();
 
 function indexPages()
 {

@@ -20,6 +20,7 @@ function showCartContent($render = true)
 function showCartItem($item)
 {
     $product = Product::getProductBy($item['id']);
+    $itemsSubtotal = $item['qty'] * $product['price'];
 
     if ($item) : ?>
         <div class="cart-item">
@@ -29,6 +30,9 @@ function showCartItem($item)
                 <button class="decrement" id="<?php echo 'dec-' . $item['id'] ?>"><i class="fa-solid fa-minus"></i></button>
                 <input type="number" class="quantity" id="<?php echo 'num-' . $item['id'] ?>" value="<?php echo $item['qty'] ?>" min="0" max="999">
                 <button class="increment" id="<?php echo 'inc-' . $item['id'] ?>"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="subtotal">
+                <h3 id="<?php echo 'sub-' .$item['id'] ?>"><?php echo formatEuros($itemsSubtotal) . formatCents($itemsSubtotal) ?></h3>
             </div>
         </div>
     <?php endif;

@@ -75,7 +75,7 @@ a {
     position: relative;
     right: 10px;
 }
-.menu .product-count {
+#product-count {
     background-color: $lincolngreen;
     border-radius: 50%;
     border: 2px solid $applegreen;
@@ -336,4 +336,7 @@ select, input, textarea {
 .item-amount .quantity::-webkit-inner-spin-button,
 .item-amount .quantity::-webkit-outer-spin-button {
     appearance: none;
+}
+.cart-item .subtotal {
+    width: 250px;
 }
