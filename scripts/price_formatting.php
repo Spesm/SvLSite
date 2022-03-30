@@ -27,3 +27,8 @@ function formatCents($price)
 
     return $cents;
 }
+
+function formatPrice($price)
+{
+    return formatEuros($price) . formatCents($price);
+}

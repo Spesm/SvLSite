@@ -43,8 +43,7 @@ class Request
             renderPage($form);
         } elseif (isset($_POST['product'])) {
             $product = filter_input(INPUT_POST, 'product');
-            $quantity = filter_input(INPUT_POST, 'qty') ?? 1;
-            addToCart($product, $quantity);
+            addToCart($product);
         }
     }
 }

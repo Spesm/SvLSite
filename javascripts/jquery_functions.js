@@ -35,10 +35,11 @@ $(document).ready(function(){
         $('#product-count').text(sum)
         id = this.id.substring(4)
         qty = this.value
-        $.post('http://localhost/SvLSite/index.php', {product: id, quantity: qty}, function(data) {
-            alert(data)
+        price = $('#ppu-' + id).val()
+        $.post('http://localhost/SvLSite/index.php', {product: id, quantity: qty, unitPrice: price}, function(price) {
+            $('#sub-' + id).text(price)
         })
-        // alert(id + ': ' + quantity)
+        // alert(id + ': ' + qty)
         // amount = this.val()
         // $('#sub-' + id).text($('#num-' + id) * 2)
     })

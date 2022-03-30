@@ -26,6 +26,7 @@ function setHead($render = true)
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="<?php echo HOME . '/javascripts/jquery_functions.js' ?>"></script>
             <meta name="viewport" content="device-width, initial-scale=1.0">
+            <meta charset="UTF-8">
         </head>
     <?php endif;
 }
