@@ -36,6 +36,7 @@ function removeProduct($productId)
 {
     $key = array_search($productId, array_column($_SESSION['cart'], 'id'));
     unset($_SESSION['cart'][$key]);
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
 }
 
 function changeQuantity($productId, $quantity)
