@@ -8,8 +8,10 @@ function addToCart($productId)
         createCart($productId);
     } elseif (!in_array($productId, array_column($_SESSION['cart'], 'id'))) {
         addProduct($productId);
+    } elseif (isset($_POST['delete'])) {
+        removeProduct($productId);
     } else {
-        $quantity = filter_input(INPUT_POST, 'quantity') ?? 1;
+        $quantity = filter_input(INPUT_POST, 'quantity') ?? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] += 1;
         changeQuantity($productId, $quantity);
     }
 }
@@ -28,6 +30,12 @@ function addProduct($productId)
         'id' => $productId,
         'qty' => 1,
     ];
+}
+
+function removeProduct($productId)
+{
+    $key = array_search($productId, array_column($_SESSION['cart'], 'id'));
+    unset($_SESSION['cart'][$key]);
 }
 
 function changeQuantity($productId, $quantity)

@@ -7,9 +7,9 @@ $(document).ready(function(){
 
     $('.item-amount .decrement').click(function() {
         id = this.id.substring(4)
-        $('#num-' + id).val(function(_, present) {
-            if (present > 1) {                
-                return parseInt(present) - 1
+        $('#num-' + id).val(function(_, current) {
+            if (current > 1) {                
+                return parseInt(current) - 1
             } else {
                 return 0
             }
@@ -18,10 +18,10 @@ $(document).ready(function(){
 
     $('.item-amount .increment').click(function() {
         id = this.id.substring(4)
-        $('#num-' + id).val(function(_, present) {
-            present = present || 0
-            if (present < 999) {                
-                return parseInt(present) + 1
+        $('#num-' + id).val(function(_, current) {
+            current = current || 0
+            if (current < 999) {                
+                return parseInt(current) + 1
             } else {
                 return 999
             }
@@ -29,11 +29,7 @@ $(document).ready(function(){
     })
 
     $('.item-amount .quantity').on('input', function() {
-        sum = 0
-        $('.item-amount .quantity').each(function() {
-            sum += +$(this).val()
-        })
-        $('#product-count').text(sum)
+        countCartItems('hi there')
         id = this.id.substring(4)
         qty = this.value || 0
         price = $('#ppu-' + id).val()
@@ -41,4 +37,22 @@ $(document).ready(function(){
             $('#sub-' + id).text(price)
         })
     })
+
+    $('.item-delete .fa-trash').click(function() {
+        id = this.id.substring(4)
+        productName = $('#name-' + id).val()
+        if (confirm("Are you sure you want to discard " + productName + " from your cart?")) {
+            $('#div-' + id).remove()
+            countCartItems()
+            $.post('http://localhost/SvLSite/index.php', {product: id, delete: true})
+        }
+    })
 })
+
+function countCartItems() {
+    sum = 0
+    $('.item-amount .quantity').each(function() {
+        sum += +$(this).val()
+    })
+    $('#product-count').text(sum)
+}

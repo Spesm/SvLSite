@@ -329,5 +329,11 @@ select, input, textarea {
   appearance: none;
 }
 .cart-item .subtotal {
-  width: 250px;
+  width: 270px;
+}
+.item-delete .fa-solid {
+  font-size: 27px;
+  color: #2a4d14;
+  margin-right: 10px;
+  cursor: pointer;
 }
