@@ -1,7 +1,7 @@
 <?php
 
-require_once ROOT . '/classes/DB.php';
-require_once ROOT . '/classes/ID.php';
+require_once 'C://xampp/htdocs/SvLSite/classes/DB.php';
+require_once 'C://xampp/htdocs/SvLSite/classes/ID.php';
 
 class Product extends DB
 {

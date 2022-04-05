@@ -1,6 +1,7 @@
 <?php
 
 require_once 'C://xampp/htdocs/SvLSite/scripts/price_formatting.php';
+require_once 'C://xampp/htdocs/SvLSite/models/Product.php';
 
 function addToCart($productId)
 {
@@ -16,20 +17,43 @@ function addToCart($productId)
     }
 }
 
-function createCart($productId)
+function getUnitPrice($productId)
 {
-    $_SESSION['cart'] = [[
+    $product = Product::getProductBy($productId);
+
+    return $product['price'];
+}
+
+function setProduct($productId)
+{
+    $cartItem = [
         'id' => $productId,
         'qty' => 1,
-    ]];
+        'price' => getUnitPrice($productId),
+    ];
+
+    return $cartItem;
+}
+
+function createCart($productId)
+{
+    $_SESSION['cart'] = [setProduct($productId)];
 }
 
 function addProduct($productId)
 {
-    $_SESSION['cart'][] = [
-        'id' => $productId,
-        'qty' => 1,
-    ];
+    $_SESSION['cart'][] = setProduct($productId);
+}
+
+function changeQuantity($productId, $quantity)
+{
+    $unitPrice = getUnitPrice($productId);
+    $productSubtotal = $quantity * $unitPrice;
+
+    $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] = $quantity;
+    $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['price'] = $productSubtotal;
+
+    echo html_entity_decode(formatPrice($productSubtotal));
 }
 
 function removeProduct($productId)
@@ -39,18 +63,16 @@ function removeProduct($productId)
     $_SESSION['cart'] = array_values($_SESSION['cart']);
 }
 
-function changeQuantity($productId, $quantity)
-{
-    $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] = $quantity;
-
-    $unitPrice = filter_input(INPUT_POST, 'unitPrice') ?? 0;
-    $productSubtotal = $quantity * $unitPrice;
-    echo html_entity_decode(formatPrice($productSubtotal));
-}
-
 function countProductsInCart()
 {
     $productCount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'qty')) : 0;
 
     return $productCount;
+}
+
+function calculateCartTotal()
+{
+    $totalAmount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'price')) : 0;
+
+    return formatPrice($totalAmount);
 }

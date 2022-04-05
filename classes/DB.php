@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT . '/config.php';
+require_once 'C://xampp/htdocs/SvLSite/config.php';
 
 class DB
 {

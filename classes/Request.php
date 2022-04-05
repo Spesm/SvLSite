@@ -42,8 +42,8 @@ class Request
             $form = filter_input(INPUT_POST, 'form');
             renderPage($form);
         } elseif (isset($_POST['product'])) {
-            $product = filter_input(INPUT_POST, 'product');
-            addToCart($product);
+            $productId = filter_input(INPUT_POST, 'product');
+            addToCart($productId);
         }
     }
 }
