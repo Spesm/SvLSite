@@ -1,7 +1,5 @@
 <?php
 
-require_once ROOT . '/scripts/form_handling.php';
-
 function showLoginContent($render = true)
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

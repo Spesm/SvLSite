@@ -1,7 +1,8 @@
 <?php
 
-require_once 'C://xampp/htdocs/SvLSite/classes/DB.php';
-require_once 'C://xampp/htdocs/SvLSite/classes/ID.php';
+namespace Models;
+
+use Classes\DB;
 
 class Product extends DB
 {

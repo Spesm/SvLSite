@@ -1,7 +1,6 @@
 <?php
 
-require_once 'C://xampp/htdocs/SvLSite/scripts/price_formatting.php';
-require_once 'C://xampp/htdocs/SvLSite/models/Product.php';
+use Models\Product;
 
 function addToCart($productId)
 {

@@ -1,7 +1,5 @@
 <?php
 
-require_once ROOT . '/scripts/shopping_cart.php';
-
 function showMenuContent($render = true)
 {
     if ($render) : ?>

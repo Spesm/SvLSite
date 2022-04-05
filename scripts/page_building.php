@@ -61,7 +61,7 @@ function showHeader($page, $render = true)
 
 function showMenu()
 {
-    require_once ROOT . '/views/menu_content.php';
+    require 'views/menu_content.php';
     showMenuContent();
 }
 

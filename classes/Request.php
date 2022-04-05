@@ -1,8 +1,6 @@
 <?php
 
-require_once 'index.php';
-require_once 'scripts/page_building.php';
-require_once 'scripts/shopping_cart.php';
+namespace Classes;
 
 class Request
 {

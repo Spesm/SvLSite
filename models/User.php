@@ -1,7 +1,8 @@
 <?php
 
-require_once ROOT . '/classes/DB.php';
-require_once ROOT . '/classes/ID.php';
+namespace Models;
+use Classes\DB;
+use Classes\ID;
 
 class User extends DB
 {

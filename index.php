@@ -1,8 +1,9 @@
 <?php
 
-require_once 'classes/Request.php';
+use Classes\Request;
 
-define('ROOT', __DIR__);
+require 'vendor/autoload.php';
+
 define('HOME', 'http://localhost/SvLSite');
 session_start();
 

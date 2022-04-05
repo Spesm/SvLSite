@@ -1,6 +1,9 @@
 <?php
 
-require_once 'C://xampp/htdocs/SvLSite/config.php';
+namespace Classes;
+
+use PDO;
+use PDOException;
 
 class DB
 {

@@ -1,7 +1,5 @@
 <?php
 
-require_once ROOT . '/scripts/form_handling.php';
-
 function showContactContent($render = true)
 {   
     $input = ['complete' => false];

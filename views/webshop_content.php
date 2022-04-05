@@ -1,7 +1,6 @@
 <?php
 
-require_once ROOT . '/models/product.php';
-require_once ROOT . '/scripts/price_formatting.php';
+use Models\Product;
 
 function showWebshopContent($render = true)
 {

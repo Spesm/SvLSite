@@ -1,5 +1,7 @@
 <?php
 
+namespace Classes;
+
 class ID
 {
     public static function create($length = 6)

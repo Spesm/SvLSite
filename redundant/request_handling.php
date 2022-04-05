@@ -12,7 +12,6 @@ function handleRequest()
             // In case of an AJAX call to add a webshop product to the cart.
             print_r($_POST);
             if (isset($_POST['productId'])) {
-                require_once 'scripts/shopping_cart.php';
                 addToCart($_POST['productId']);
                 exit;
             } else {

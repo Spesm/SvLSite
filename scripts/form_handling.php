@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT . '/models/User.php';
+use Models\User;
 
 function openPost()
 {
