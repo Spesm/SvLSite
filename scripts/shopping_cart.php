@@ -53,7 +53,12 @@ function changeQuantity($productId, $quantity)
     $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] = $quantity;
     $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['price'] = $productSubtotal;
 
-    echo html_entity_decode(formatPrice($productSubtotal));
+    $return = json_encode([
+        'product-subtotal' => formatPrice($productSubtotal),
+        'cart-total' => calculateCartTotal(),
+    ]);
+
+    echo html_entity_decode($return);
 }
 
 function removeProduct($productId)
@@ -61,6 +66,8 @@ function removeProduct($productId)
     $key = array_search($productId, array_column($_SESSION['cart'], 'id'));
     unset($_SESSION['cart'][$key]);
     $_SESSION['cart'] = array_values($_SESSION['cart']);
+
+    echo html_entity_decode(calculateCartTotal());
 }
 
 function countProductsInCart()

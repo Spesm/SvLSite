@@ -29,12 +29,13 @@ $(document).ready(function(){
     })
 
     $('.item-amount .quantity').on('input', function() {
-        countCartItems('hi there')
+        countCartItems()
         id = this.id.substring(4)
         qty = this.value || 0
-        price = $('#ppu-' + id).val()
-        $.post('http://localhost/SvLSite/index.php', {product: id, quantity: qty, unitPrice: price}, function(price) {
-            $('#sub-' + id).text(price)
+        $.post('http://localhost/SvLSite/index.php', {product: id, quantity: qty}, function(data) {
+            pricing = JSON.parse(data)
+            $('#sub-' + id).text(pricing['product-subtotal'])
+            $('#total-price').text(pricing['cart-total'])
         })
     })
 
@@ -44,7 +45,9 @@ $(document).ready(function(){
         if (confirm("Are you sure you want to discard " + productName + " from your cart?")) {
             $('#div-' + id).remove()
             countCartItems()
-            $.post('http://localhost/SvLSite/index.php', {product: id, delete: true})
+            $.post('http://localhost/SvLSite/index.php', {product: id, delete: true}, function(totalPrice) {
+                $('#total-price').text(totalPrice)
+            })
         }
     })
 })
@@ -55,4 +58,5 @@ function countCartItems() {
         sum += +$(this).val()
     })
     $('#product-count').text(sum)
+    $('#item-count').text(sum + ' items')
 }
