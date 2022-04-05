@@ -8,7 +8,7 @@ function showWebshopContent($render = true)
 
     if ($render) : ?>
         <div class="content">
-            <h1 class="product-header">Offers you can't refuse</h1>
+            <h1 class="content-header">Offers you can't refuse</h1>
             <div class="product-index">
                 <?php foreach ($products as $product) {
                     showProductCard($product);

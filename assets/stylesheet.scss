@@ -209,7 +209,7 @@ select, input, textarea {
     border-radius: 10px;
     color: $ivory;
 }
-.product-header {
+.content-header {
     text-align: center;
 }
 .product-name {
@@ -304,9 +304,11 @@ select, input, textarea {
 .cart-item h3 {
     color: $ivory;
     margin: 0 10px;
+    flex: 0 3 500px;
 }
 .item-amount {
     margin-left: auto;
+    flex: 0 0 140px;
 }
 .item-amount button {
     height: 32px;
@@ -345,6 +347,10 @@ select, input, textarea {
     color: $lincolngreen;
     margin-right: 10px;
     cursor: pointer;
+}
+.item-delete .fa-solid:hover {
+    color: $ivory;
+    transition: 0.5s;
 }
 .cart-total {
     background-color: $lincolngreen;
