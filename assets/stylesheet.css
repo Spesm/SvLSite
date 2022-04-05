@@ -337,3 +337,22 @@ select, input, textarea {
   margin-right: 10px;
   cursor: pointer;
 }
+.cart-total {
+  background-color: #2a4d14;
+  color: #f5f9e9;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+.cart-total h3 {
+  margin: 5px;
+}
+.cart-total #item-count {
+  width: 110px;
+  margin-left: auto;
+}
+.cart-total #total-price {
+  width: 290px;
+}

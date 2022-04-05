@@ -55,7 +55,6 @@ function showHeader($page, $render = true)
         <div class="header">
             <h1>SvLSite - <?php echo ucfirst($page) ?></h1>
             <p><?php echo empty($_SESSION['username']) ? 'Not logged in' : 'Welcome ' . $_SESSION['username']; ?></p>
-            <p><?php echo empty($_SESSION['cart']) ? print_r([]) : print_r($_SESSION); ?></p>
         </div>
     <?php endif;
 }
