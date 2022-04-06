@@ -36,12 +36,14 @@ class Request
 
     public static function handlePostRequest()
     {
-        if (isset($_POST['form'])) {
+        if (isset($_POST['form']) && in_array($_POST['form'], indexPages())) {
             $form = filter_input(INPUT_POST, 'form');
             renderPage($form);
         } elseif (isset($_POST['product'])) {
             $productId = filter_input(INPUT_POST, 'product');
             addToCart($productId);
+        } else {
+            echo 'Failed to resolve request';
         }
     }
 }

@@ -6,6 +6,7 @@
     "autoload": {
         "files": [
             "config.php",
+            "constants.php",
             "scripts/page_building.php",
             "scripts/form_handling.php",
             "scripts/price_formatting.php",
