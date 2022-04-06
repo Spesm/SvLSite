@@ -215,6 +215,7 @@ select, input, textarea {
 .product-name {
     text-shadow: 2px 2px 4px $ivory;
     color: $lincolngreen;
+    min-height: 100px;
 }
 .product-index {
     display: flex;
@@ -232,13 +233,9 @@ select, input, textarea {
     box-shadow: 2px 2px 15px 5px $onyx;
     color: $lincolngreen;
 }
-.product-name {
-    min-height: 100px;
-}
 .product-card img {
     width: 300px;
     height: 300px;
-    display: block;
     object-fit: contain;
     margin: auto;
     background-color: #fff;
@@ -370,4 +367,41 @@ select, input, textarea {
 }
 .cart-total #total-price {
     width: 290px;
+}
+.product-page {
+    background-color: $applegreen;
+    border: 2px solid $lincolngreen;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.product-page-header {
+    font-size: 60px;
+    color: $ivory;
+}
+.image-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-row img {
+    width: 25vw;
+    height: 25vw;
+    min-width: 300px;
+    min-height: 300px;
+    object-fit: contain;
+    margin: 20px;
+    background-color: #fff;
+    border: 5px solid #fff;
+}
+.image-row .description {
+    color: $ivory;
+    text-align: left;
+    width: 25vw;
+    min-width: 300px;
+    margin: 10px 20px;
+}
+.image-row .description h1 {
+    margin-top: 0;
 }

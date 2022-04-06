@@ -11,7 +11,7 @@ function showMenuContent($render = true)
                 <a href="<?php echo HOME . '/webshop'; ?>">Webshop</a>
             </div>
             <div class="shopping">
-                <a class="cart-circle" href="./cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a class="cart-circle" href="<?php echo HOME . '/cart'; ?>"><i class="fa-solid fa-cart-shopping"></i></a>
                 <div id="product-count"><?php echo countProductsInCart() ?></div>
             </div>
             <div class="account">

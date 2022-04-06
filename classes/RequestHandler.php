@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-class Request
+class RequestHandler
 {
     public static function handle()
     {

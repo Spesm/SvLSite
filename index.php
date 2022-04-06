@@ -1,6 +1,6 @@
 <?php
 
-use Classes\Request;
+use Classes\RequestHandler;
 
 require 'vendor/autoload.php';
 
@@ -8,7 +8,7 @@ if (empty($_SESSION)) {
     session_start();   
 }
 
-Request::handle();
+RequestHandler::handle();
 
 function indexPages()
 {
