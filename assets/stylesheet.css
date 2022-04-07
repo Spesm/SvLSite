@@ -255,7 +255,7 @@ select, input, textarea {
   width: 100%;
   display: inline-block;
 }
-.add-product-button {
+.action-button {
   float: right;
   appearance: none;
   width: 125px;
@@ -267,7 +267,7 @@ select, input, textarea {
   cursor: pointer;
   font: inherit;
 }
-.add-product-button:hover {
+.action-button:hover {
   background-color: #f5f9e9;
   border: 2px solid #3f4045;
   color: #0d1b2a;
@@ -316,7 +316,7 @@ select, input, textarea {
   border: 2px solid #2a4d14;
   transition: 0.5s;
 }
-.item-amount .quantity {
+.item-amount .number {
   border: 2px solid #2a4d14;
   width: 55px;
   height: 40px;
@@ -324,7 +324,7 @@ select, input, textarea {
   line-height: 10px;
   font-size: 20px;
 }
-.item-amount .quantity::-webkit-inner-spin-button, .item-amount .quantity::-webkit-outer-spin-button {
+.item-amount .number::-webkit-inner-spin-button, .item-amount .number::-webkit-outer-spin-button {
   appearance: none;
 }
 .cart-item .subtotal {
@@ -372,11 +372,11 @@ select, input, textarea {
   font-size: 60px;
   color: #f5f9e9;
 }
-.image-row {
+.info-row {
   display: flex;
   flex-wrap: wrap;
 }
-.image-row img {
+.info-row img {
   width: 25vw;
   height: 25vw;
   min-width: 300px;
@@ -386,13 +386,53 @@ select, input, textarea {
   background-color: #fff;
   border: 5px solid #fff;
 }
-.image-row .description {
+.info-row .description {
   color: #f5f9e9;
   text-align: left;
   width: 25vw;
   min-width: 300px;
   margin: 10px 20px;
 }
-.image-row .description h1 {
+.info-row .description h1 {
   margin-top: 0;
+}
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.product-price-tag {
+  background-color: #f5f9e9;
+  margin: 20px;
+  padding: 20px 5px;
+  width: 25vw;
+  min-width: 300px;
+  color: #0d1b2a;
+  text-align: center;
+  box-shadow: 1px 1px 2px 2px #2a4d14;
+  border-radius: 10px;
+}
+.product-total h3 {
+  width: 270px;
+  color: #f5f9e9;
+  text-align: left;
+  margin: 0 20px;
+}
+.btn-square {
+  appearance: none;
+  width: 150px;
+  margin: 20px;
+  margin-left: auto;
+  padding: 10px;
+  background-color: #2a4d14;
+  color: #f5f9e9;
+  border-radius: 5px;
+  cursor: pointer;
+  font: inherit;
+}
+.btn-square:hover {
+  background-color: #f5f9e9;
+  border: 2px solid #3f4045;
+  color: #0d1b2a;
+  transition: 0.5s;
 }

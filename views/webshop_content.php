@@ -31,7 +31,7 @@ function showProductCard($product)
             </span>
             </a>
             <div class="product-action">
-                <button class="add-product-button" id="<?php echo $product['id']; ?>">Buy</button>
+                <button class="action-button add-product" id="<?php echo $product['id']; ?>">Buy</button>
             </div>
         </div>
     <?php endif;
