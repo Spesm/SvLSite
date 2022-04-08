@@ -21,18 +21,16 @@ function showWebshopContent($render = true)
 function showProductCard($product)
 {
     if ($product['id']) : ?>
-        <div class="product-card">
-            <a href="<?php echo HOME . '/product/' . $product['id']; ?>">
+        <a class="product-card" href="<?php echo HOME . '/product/' . $product['id']; ?>">
             <h1 class="product-name"><?php echo $product['name']; ?></h1>
             <img src="<?php echo HOME . '/storage/images/products/' . $product['image']; ?>">
             <span class="price-tag">
                 <h2 class="euros"><?php echo formatEuros($product['price']); ?></h2>
                 <h4 class="cents"><?php echo formatCents($product['price']); ?></h4>
             </span>
-            </a>
             <div class="product-action">
-                <button class="action-button add-product" id="<?php echo $product['id']; ?>">Buy</button>
+                <button class="action-button jq-add-product" id="<?php echo $product['id']; ?>">Buy</button>
             </div>
-        </div>
+        </a>
     <?php endif;
 }

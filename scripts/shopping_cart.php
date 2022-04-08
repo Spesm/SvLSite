@@ -25,9 +25,11 @@ function getUnitPrice($productId)
 
 function setProduct($productId)
 {
+    $quantity = filter_input(INPUT_POST, 'quantity') ?? 1;
+
     $cartItem = [
         'id' => $productId,
-        'qty' => 1,
+        'qty' => $quantity,
         'price' => getUnitPrice($productId),
     ];
 
@@ -42,6 +44,8 @@ function createCart($productId)
 function addProduct($productId)
 {
     $_SESSION['cart'][] = setProduct($productId);
+
+    echo countProductsInCart();
 }
 
 function changeQuantity($productId, $quantity)
@@ -81,4 +85,12 @@ function calculateCartTotal()
     $totalAmount = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'price')) : 0;
 
     return formatPrice($totalAmount);
+}
+
+function calculateProductCost($productId)
+{
+    $quantity = filter_input(INPUT_POST, 'quantity') ?? 0;
+    $price = getUnitPrice($productId);
+
+    echo html_entity_decode(formatPrice($price * $quantity));
 }

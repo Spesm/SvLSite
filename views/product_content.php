@@ -6,7 +6,7 @@ function showProductContent($render = true)
 {
     $productId = explode('/', str_replace('/SvLSite/', '', $_SERVER['REQUEST_URI']))[1];
     $product = Product::getProductBy($productId);
-    $amount = $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] ?? 1;
+    $amount = in_array($productId, array_column($_SESSION['cart'], 'id')) ? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] : 1;
     $cost = $amount * $product['price'];
 
     if ($render && !empty($product)) : ?>
@@ -27,16 +27,16 @@ function showProductContent($render = true)
                         <h4 class="cents"><?php echo formatCents($product['price']); ?></h4>
                     </div>
                     <div class="item-amount">
-                        <button class="product-dec" id="<?php echo 'pde-' . $productId; ?>"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" class="number" id="<?php echo 'pnr-' . $productId; ?>" value="<?php echo $amount; ?>" min="0" max="999">
-                        <button class="product-inc" id="<?php echo 'pin-' . $productId; ?>"><i class="fa-solid fa-plus"></i></button>
+                        <button class="product-dec"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" class="number jq-product-qty" id="<?php echo $productId; ?>" value="<?php echo $amount; ?>" min="0" max="999">
+                        <button class="product-inc"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="product-total">
-                        <h3 id="<?php echo 'ptc-' . $productId ?>"><?php echo formatPrice($cost); ?></h3>
+                        <h3 class="jq-product-cost" id="<?php echo 'ptc-' . $productId ?>"><?php echo formatPrice($cost); ?></h3>
                     </div>
-                    <button class="btn-square add-to-cart" id="<?php echo $productId; ?>">Add to Cart</button>
+                    <button class="btn-square jq-add-to-cart" id="<?php echo $productId; ?>">Add to Cart</button>
                 </div>
-            </div>
+            </div>           
         </div>
     <?php elseif (empty($product)) : ?>
         <div class="content">

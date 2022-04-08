@@ -39,9 +39,12 @@ class RequestHandler
         if (isset($_POST['form']) && in_array($_POST['form'], indexPages())) {
             $form = filter_input(INPUT_POST, 'form');
             renderPage($form);
-        } elseif (isset($_POST['product'])) {
-            $productId = filter_input(INPUT_POST, 'product');
+        } elseif (isset($_POST['cartProduct'])) {
+            $productId = filter_input(INPUT_POST, 'cartProduct');
             addToCart($productId);
+        } elseif (isset($_POST['pageProduct'])) {
+            $productId = filter_input(INPUT_POST, 'pageProduct');
+            calculateProductCost($productId);
         } else {
             echo 'Failed to resolve request';
         }
