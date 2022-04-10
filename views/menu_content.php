@@ -1,5 +1,7 @@
 <?php
 
+use Classes\CartHandler;
+
 function showMenuContent($render = true)
 {
     if ($render) : ?>
@@ -12,7 +14,7 @@ function showMenuContent($render = true)
             </div>
             <div class="shopping">
                 <a class="cart-circle" href="<?php echo HOME . '/cart'; ?>"><i class="fa-solid fa-cart-shopping"></i></a>
-                <div id="product-count"><?php echo countProductsInCart() ?></div>
+                <div id="product-count"><?php echo CartHandler::countProductsInCart() ?></div>
             </div>
             <div class="account">
                 <?php if (empty($_SESSION['username'])) : ?>

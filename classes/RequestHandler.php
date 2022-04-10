@@ -2,6 +2,8 @@
 
 namespace Classes;
 
+use Classes\CartHandler;
+
 class RequestHandler
 {
     public static function handle()
@@ -39,12 +41,8 @@ class RequestHandler
         if (isset($_POST['form']) && in_array($_POST['form'], indexPages())) {
             $form = filter_input(INPUT_POST, 'form');
             renderPage($form);
-        } elseif (isset($_POST['cartProduct'])) {
-            $productId = filter_input(INPUT_POST, 'cartProduct');
-            addToCart($productId);
-        } elseif (isset($_POST['pageProduct'])) {
-            $productId = filter_input(INPUT_POST, 'pageProduct');
-            calculateProductCost($productId);
+        } elseif (isset($_POST['cart_product'])) {
+            CartHandler::respond();
         } else {
             echo 'Failed to resolve request';
         }

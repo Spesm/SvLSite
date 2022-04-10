@@ -9,8 +9,7 @@
             "constants.php",
             "scripts/page_building.php",
             "scripts/form_handling.php",
-            "scripts/price_formatting.php",
-            "scripts/shopping_cart.php"
+            "scripts/price_formatting.php"
         ],
         "psr-4": {
             "Models\\": "models/",

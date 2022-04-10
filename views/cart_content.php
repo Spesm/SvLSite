@@ -1,6 +1,7 @@
 <?php
 
 use Models\Product;
+use Classes\CartHandler;
 
 function showCartContent($render = true)
 {
@@ -14,8 +15,8 @@ function showCartContent($render = true)
             } ?>
             <div class="cart-total">
                 <h3>Total:</h3>
-                <h3 id="item-count"><?php echo countProductsInCart() . ' items'; ?></h3>
-                <h3 id="total-price"><?php echo calculateCartTotal(); ?></h3>
+                <h3 id="item-count"><?php echo CartHandler::countProductsInCart() . ' items'; ?></h3>
+                <h3 id="total-price"><?php echo CartHandler::calculateCartTotal(); ?></h3>
             </div>
         </div>
     <?php endif;

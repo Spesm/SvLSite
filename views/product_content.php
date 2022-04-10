@@ -6,7 +6,7 @@ function showProductContent($render = true)
 {
     $productId = explode('/', str_replace('/SvLSite/', '', $_SERVER['REQUEST_URI']))[1];
     $product = Product::getProductBy($productId);
-    $amount = in_array($productId, array_column($_SESSION['cart'], 'id')) ? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] : 1;
+    $amount = isset($_SESSION['cart']) && in_array($productId, array_column($_SESSION['cart'], 'id')) ? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] : 1;
     $cost = $amount * $product['price'];
 
     if ($render && !empty($product)) : ?>

@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.jq-add-product').click(function(event) {
         event.preventDefault()
         $('#product-count').text((_, present) => parseInt(present) + 1)
-        $.post('http://localhost/SvLSite/index.php', {cartProduct: this.id})
+        $.post('http://localhost/SvLSite/index.php', {cart_product: this.id, update_cart: true})
     })
 
     $('.item-amount .decrement').click(function() {
@@ -33,10 +33,10 @@ $(document).ready(function(){
         countCartItems()
         id = this.id.substring(4)
         qty = this.value || 0
-        $.post('http://localhost/SvLSite/index.php', {cartProduct: id, quantity: qty}, function(data) {
-            pricing = JSON.parse(data)
-            $('#sub-' + id).text(pricing['product-subtotal'])
-            $('#total-price').text(pricing['cart-total'])
+        $.post('http://localhost/SvLSite/index.php', {cart_product: id, quantity: qty, update_cart: true, product_cost: true, cart_cost: true}, function(response) {
+            data = JSON.parse(response)
+            $('#sub-' + id).text(data['product_cost'])
+            $('#total-price').text(data['cart_cost'])
         })
     })
 
@@ -46,8 +46,9 @@ $(document).ready(function(){
         if (confirm("Are you sure you want to discard " + productName + " from your cart?")) {
             $('#div-' + id).remove()
             countCartItems()
-            $.post('http://localhost/SvLSite/index.php', {cartProduct: id, delete: true}, function(totalPrice) {
-                $('#total-price').text(totalPrice)
+            $.post('http://localhost/SvLSite/index.php', {cart_product: id, update_cart: true, remove_product: true, cart_cost: true}, function(response) {
+                data = JSON.parse(response)
+                $('#total-price').text(data['cart_cost'])
             })
         }
     })
@@ -83,9 +84,9 @@ $(document).ready(function(){
     $('.jq-add-to-cart').click(function() {
         id = this.id
         qty = $('.jq-product-qty').val() || 0
-        $.post('http://localhost/SvLSite/index.php', {cartProduct: id, quantity: qty}, function(data) {
-            amount = data['cart-total'] || data
-            $('#product-count').text(data)
+        $.post('http://localhost/SvLSite/index.php', {cart_product: id, quantity: qty, update_cart: true, cart_count: true}, function(response) {
+            data = JSON.parse(response)
+            $('#product-count').text(data['cart_count'])
         })
     })
 })
@@ -105,7 +106,8 @@ function calculateProductCost(qty) {
     })
     $('.jq-product-qty').val(qty)
     qty = qty || 0
-    $.post('http://localhost/SvLSite/index.php', {pageProduct: id, quantity: qty}, function(productCost) {
-        $('.jq-product-cost').text(productCost)
+    $.post('http://localhost/SvLSite/index.php', {cart_product: id, quantity: qty, product_cost: true}, function(response) {
+        data = JSON.parse(response)
+        $('.jq-product-cost').text(data['product_cost'])
     })
 }
