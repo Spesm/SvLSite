@@ -20,7 +20,7 @@ function showCartContent($render = true)
             </div>
             <div class="cart-buttons">
                 <button class="btn-square jq-clear-cart">Discart</button>
-                <button class="btn-square jq-clear-cart">Place Order</button>
+                <button class="btn-square jq-cart-order">Place Order</button>
             </div>
         </div>
     <?php endif;

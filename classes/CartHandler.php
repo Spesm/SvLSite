@@ -12,8 +12,12 @@ class CartHandler
 
     public static function respond()
     {
-        self::$product = self::getProduct();
-        self::$quantity = filter_input(INPUT_POST, 'quantity') ?? 1;
+        if (filter_input(INPUT_POST, 'destroy_cart')) {
+            self::destroyCart();
+        } else {
+            self::$product = self::getProduct();
+            self::$quantity = filter_input(INPUT_POST, 'quantity') ?? 1;            
+        }
 
         if (filter_input(INPUT_POST, 'update_cart')) {
             self::updateCart();
@@ -47,6 +51,11 @@ class CartHandler
     public static function createCart()
     {
         $_SESSION['cart'] = [];
+    }
+
+    public static function destroyCart()
+    {
+        unset($_SESSION['cart']);
     }
 
     public static function addProductToCart()

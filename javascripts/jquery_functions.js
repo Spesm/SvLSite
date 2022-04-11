@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.jq-add-product').click(function(event) {
         event.preventDefault()
         $('#product-count').text((_, present) => parseInt(present) + 1)
-        $.post('http://localhost/SvLSite/index.php', {cart_product: this.id, update_cart: true})
+        $.post('http://localhost/SvLSite/index.php', {cart_product: this.id, update_cart: true, add_to_current: true})
     })
 
     $('.item-amount .decrement').click(function() {
@@ -89,6 +89,22 @@ $(document).ready(function(){
             data = JSON.parse(response)
             $('#product-count').text(data['cart_count'])
         })
+    })
+
+    $('.jq-clear-cart').click(function() {
+        if (confirm("Are you sure you want to discard your entire cart?")) {
+            $('.cart-item').remove()
+            countCartItems()
+            $.post('http://localhost/SvLSite/index.php', {cart_product: "destroy", destroy_cart: true, cart_cost: true}, function(response) {
+                data = JSON.parse(response)
+                $('#total-price').text(data['cart_cost'])
+            })
+        }
+        
+    })
+
+    $('.jq-cart-order').click(function() {
+
     })
 })
 
