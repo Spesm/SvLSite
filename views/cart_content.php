@@ -18,6 +18,10 @@ function showCartContent($render = true)
                 <h3 id="item-count"><?php echo CartHandler::countProductsInCart() . ' items'; ?></h3>
                 <h3 id="total-price"><?php echo CartHandler::calculateCartTotal(); ?></h3>
             </div>
+            <div class="cart-buttons">
+                <button class="btn-square jq-clear-cart">Discart</button>
+                <button class="btn-square jq-clear-cart">Place Order</button>
+            </div>
         </div>
     <?php endif;
 }

@@ -368,6 +368,11 @@ select, input, textarea {
 .cart-total #total-price {
     width: 290px;
 }
+.cart-buttons {
+    // float: right;
+    display: flex;
+    justify-content: flex-end;
+}
 .product-page {
     background-color: $applegreen;
     border: 2px solid $lincolngreen;
@@ -444,4 +449,7 @@ select, input, textarea {
     border: 2px solid $onyx;
     color: $richblack;
     transition: 0.5s;
+}
+.cart-buttons button {
+    margin: 10px;
 }

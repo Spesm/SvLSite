@@ -359,6 +359,10 @@ select, input, textarea {
 .cart-total #total-price {
   width: 290px;
 }
+.cart-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
 .product-page {
   background-color: #8fb339;
   border: 2px solid #2a4d14;
@@ -435,4 +439,7 @@ select, input, textarea {
   border: 2px solid #3f4045;
   color: #0d1b2a;
   transition: 0.5s;
+}
+.cart-buttons button {
+  margin: 10px;
 }
