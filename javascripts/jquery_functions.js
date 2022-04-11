@@ -82,6 +82,7 @@ $(document).ready(function(){
     })
 
     $('.jq-add-to-cart').click(function() {
+        $(this).html("Update Cart")
         id = this.id
         qty = $('.jq-product-qty').val() || 0
         $.post('http://localhost/SvLSite/index.php', {cart_product: id, quantity: qty, update_cart: true, cart_count: true}, function(response) {

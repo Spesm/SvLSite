@@ -6,7 +6,8 @@ function showProductContent($render = true)
 {
     $productId = explode('/', str_replace('/SvLSite/', '', $_SERVER['REQUEST_URI']))[1];
     $product = Product::getProductBy($productId);
-    $amount = isset($_SESSION['cart']) && in_array($productId, array_column($_SESSION['cart'], 'id')) ? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] : 1;
+    $inCart = isset($_SESSION['cart']) && in_array($productId, array_column($_SESSION['cart'], 'id')) ? true : false;
+    $amount = $inCart ? $_SESSION['cart'][array_search($productId, array_column($_SESSION['cart'], 'id'))]['qty'] : 1;
     $cost = $amount * $product['price'];
 
     if ($render && !empty($product)) : ?>
@@ -34,7 +35,7 @@ function showProductContent($render = true)
                     <div class="product-total">
                         <h3 class="jq-product-cost" id="<?php echo 'ptc-' . $productId ?>"><?php echo formatPrice($cost); ?></h3>
                     </div>
-                    <button class="btn-square jq-add-to-cart" id="<?php echo $productId; ?>">Add to Cart</button>
+                    <button class="btn-square jq-add-to-cart" id="<?php echo $productId; ?>"><?php echo $inCart ? "Update Cart" : "Add to Cart"; ?></button>
                 </div>
             </div>           
         </div>
