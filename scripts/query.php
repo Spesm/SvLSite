@@ -69,8 +69,8 @@ function createOrderTable()
         `id` CHAR(6) UNIQUE NOT NULL,
         `order` VARCHAR(255),
         `value` DOUBLE UNSIGNED,
-        `user_id` CHAR(6) NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(`id`),
+        `user` CHAR(6) NOT NULL,
+        FOREIGN KEY (user) REFERENCES users(`id`),
         `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";

@@ -1,5 +1,7 @@
 <?php
 
+use Models\User;
+
 function renderPage($page)
 {
     startHtml();

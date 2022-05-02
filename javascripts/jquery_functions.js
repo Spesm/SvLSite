@@ -100,13 +100,15 @@ $(document).ready(function(){
 
     $('.jq-cart-order').click(function() {
         if ($('.cart-item').length == 0) {
-            if (confirm("Nothing to order\nWould you like to check our webshop for some amazing products?")) {
+            if (confirm("Nothing to order.\nWould you like to check our webshop for some amazing products?")) {
                 window.location.href = 'http://localhost/SvLSite/webshop'
             }
+        } else if ($('.account a:first').html() == "Login") {
+            alert("We don't know who you are.\nPlease sign in or register to place your order.")
         } else {        
             $.post('http://localhost/SvLSite/index.php', {cart_order: true}, function(response) {
-                data = JSON.parse(response)
-                alert(data)
+                // data = JSON.parse(response)
+                alert(response)
             })    
         }
     })

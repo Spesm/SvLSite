@@ -3,6 +3,7 @@
 namespace Classes;
 
 use Classes\CartHandler;
+use Models\Order;
 
 class RequestHandler
 {
@@ -44,7 +45,8 @@ class RequestHandler
         } elseif (isset($_POST['cart_product'])) {
             CartHandler::respond();
         } elseif (isset($_POST['cart_order'])) {
-            echo json_encode('request received');
+            // echo json_encode('request received');
+            Order::create();
         } else {
             echo 'Failed to resolve request';
         }

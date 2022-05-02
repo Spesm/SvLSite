@@ -48,9 +48,9 @@ class User extends DB
 
         $userData = [
             'id'        => self::setId(),
-            'name'  => $user['username'],
+            'name'      => $user['username'],
             'email'     => $user['email'],
-            'password'      => $user['password'],
+            'password'  => $user['password'],
         ];
         
         self::execute($userData);
