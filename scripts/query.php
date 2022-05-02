@@ -4,10 +4,10 @@ use Classes\ID;
 
 function qpdo($query)
 {
-    $host = DBHOST;
+    $host = '127.0.0.1';
     $username = 'root';
     $password = '';
-    $dbname = DBNAME;
+    $dbname = 'svlsite';
 
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -31,7 +31,6 @@ function createDatabase()
 
 function createUserTable()
 {
-
     $query = "CREATE TABLE users (
         `nr` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `id` CHAR(6) UNIQUE NOT NULL,
@@ -63,6 +62,22 @@ function createProductTable()
     qpdo($query);
 }
 
+function createOrderTable()
+{
+    $query = "CREATE TABLE orders (
+        `nr` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `id` CHAR(6) UNIQUE NOT NULL,
+        `order` VARCHAR(255),
+        `value` DOUBLE UNSIGNED,
+        `user_id` CHAR(6) NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(`id`),
+        `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )";
+
+    qpdo($query);
+}
+
 function feedProductTable()
 {
     $query = "INSERT INTO products (`id`, `name`, `description`, `price`, `image`) VALUES
@@ -79,4 +94,5 @@ function feedProductTable()
 
 // createUserTable();
 // createProductTable();
+createOrderTable();
 // feedProductTable();

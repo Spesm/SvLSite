@@ -93,18 +93,22 @@ $(document).ready(function(){
 
     $('.jq-clear-cart').click(function() {
         if (confirm("Are you sure you want to discard your entire cart?")) {
-            $('.cart-item').remove()
+            destroyCart()
             countCartItems()
-            $.post('http://localhost/SvLSite/index.php', {cart_product: "destroy", destroy_cart: true, cart_cost: true}, function(response) {
-                data = JSON.parse(response)
-                $('#total-price').text(data['cart_cost'])
-            })
-        }
-        
+        }        
     })
 
     $('.jq-cart-order').click(function() {
-
+        if ($('.cart-item').length == 0) {
+            if (confirm("Nothing to order\nWould you like to check our webshop for some amazing products?")) {
+                window.location.href = 'http://localhost/SvLSite/webshop'
+            }
+        } else {        
+            $.post('http://localhost/SvLSite/index.php', {cart_order: true}, function(response) {
+                data = JSON.parse(response)
+                alert(data)
+            })    
+        }
     })
 })
 
@@ -126,5 +130,13 @@ function calculateProductCost(qty) {
     $.post('http://localhost/SvLSite/index.php', {cart_product: id, quantity: qty, product_cost: true}, function(response) {
         data = JSON.parse(response)
         $('.jq-product-cost').text(data['product_cost'])
+    })
+}
+
+function destroyCart() {
+    $('.cart-item').remove()
+    $.post('http://localhost/SvLSite/index.php', {cart_product: true, destroy_cart: true, cart_cost: true}, function(response) {
+        data = JSON.parse(response)
+        $('#total-price').text(data['cart_cost'])
     })
 }

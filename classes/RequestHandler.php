@@ -43,6 +43,8 @@ class RequestHandler
             renderPage($form);
         } elseif (isset($_POST['cart_product'])) {
             CartHandler::respond();
+        } elseif (isset($_POST['cart_order'])) {
+            echo json_encode('request received');
         } else {
             echo 'Failed to resolve request';
         }

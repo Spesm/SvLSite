@@ -50,18 +50,18 @@ class User extends DB
             'id'        => self::setId(),
             'name'  => $user['username'],
             'email'     => $user['email'],
-            'password'      => $user['password']
+            'password'      => $user['password'],
         ];
         
         self::execute($userData);
         self::destruct();
     }
 
-    public static function getUserBy($email)
+    public static function getUserBy($value, $key = 'id')
     {
-        self::prepare("SELECT * FROM users WHERE email = :email");
+        self::prepare("SELECT * FROM users WHERE " . $key . " = :" . $key);
 
-        self::execute(['email' => $email]);
+        self::execute([$key => $value]);
         $user = self::fetch();
         self::destruct();
 
