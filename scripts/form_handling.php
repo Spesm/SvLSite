@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT . '/models/User.php';
+use Models\User;
 
 function openPost()
 {
@@ -197,16 +197,16 @@ function processLogin()
     return $output;
 }
 
-function loginUser($email, $password)
+function loginUser($mail, $password)
 {
-    $user = User::getUserBy($email);
+    $user = User::getUserBy($mail, 'email');
 
-    if (!$user || $user['pass'] !== $password) {
+    if (!$user || $user['password'] !== $password) {
         $alert = createAlert('login', 'failed');
         return ['login_error' => $alert];
     } else {
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['email'] = $email;
+        $_SESSION['username'] = $user['name'];
+        $_SESSION['email'] = $mail;
         header('Location:' . HOME . '/home');
     }
 }

@@ -1,11 +1,9 @@
 <?php
 
-require_once ROOT . '/scripts/form_handling.php';
-
 function showContactContent($render = true)
 {   
     $input = ['complete' => false];
-    if ($_SESSION) {
+    if (isset($_SESSION['username'])) {
         $input += ['username' => ['value' => $_SESSION['username']]];
         $input += ['email' => ['value' => $_SESSION['email']]];
     }

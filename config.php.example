@@ -4,3 +4,4 @@ define('DBUSER', 'yourUserName');
 define('DBPWD', 'yourPassword');
 define('DBHOST', 'localHostname');
 define('DBNAME', 'targetDatabase');
+define('DBCHARS', 'utf8mb4');

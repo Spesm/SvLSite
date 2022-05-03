@@ -1,7 +1,8 @@
 <?php
 
-require_once ROOT . '/classes/DB.php';
-require_once ROOT . '/classes/ID.php';
+namespace Models;
+use Classes\DB;
+use Classes\ID;
 
 class User extends DB
 {
@@ -33,6 +34,7 @@ class User extends DB
     {
         $usedIds = self::getUsedIds();
 
+        $id = 0;
         do {
             $id = ID::create();
         } while (in_array($id, $usedIds));
@@ -42,24 +44,24 @@ class User extends DB
 
     public static function create($user)
     {
-        self::prepare("INSERT INTO users (id, username, email, pass) VALUES (:id, :username, :email, :pass)");
+        self::prepare("INSERT INTO users (id, name, email, password) VALUES (:id, :name, :email, :password)");
 
         $userData = [
             'id'        => self::setId(),
-            'username'  => $user['username'],
+            'name'      => $user['username'],
             'email'     => $user['email'],
-            'pass'      => $user['password']
+            'password'  => $user['password'],
         ];
-
+        
         self::execute($userData);
         self::destruct();
     }
 
-    public static function getUserBy($email)
+    public static function getUserBy($value, $key = 'id')
     {
-        self::prepare("SELECT * FROM users WHERE email = :email");
+        self::prepare("SELECT * FROM users WHERE " . $key . " = :" . $key);
 
-        self::execute(['email' => $email]);
+        self::execute([$key => $value]);
         $user = self::fetch();
         self::destruct();
 

@@ -41,17 +41,10 @@ a {
     padding: 10px;
     margin: 3px 0 20px;
     border-radius: 0 0 10px 10px;
-}
-.menu div {
-    display: inline-block;
-}
-.menu ul {
-    margin: 0;
-    padding: 0;
-}
-.menu li {
-    list-style-type: none;
-    display: inline-block;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 .menu a {
     display: inline-block;
@@ -70,16 +63,42 @@ a {
     border-color: $onyx;
     transition: 0.5s;
 }
-.menu .session {
-    float: right;
+.menu .shopping {
+    margin-left: auto;
+    position: relative;
 }
-.menu li div {
+.menu .cart-circle {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 30px;
+    position: relative;
+    right: 10px;
+}
+#product-count {
+    background-color: $lincolngreen;
+    border-radius: 50%;
+    border: 2px solid $applegreen;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    position: absolute;
+    left: 25px;
+    bottom: 35px;
+}
+.menu .account {
+    display: inline-block;
+}
+.menu .username {
+    display: inline-block;
     text-align: center;
     white-space: nowrap;
     padding: 10px;
     width: 100px;
     margin: 5px;
-    border: 2px solid $onyx;
+    border: 2px solid $ivory;
     border-radius: 5px;
     background-color: $applegreen;
     color: $richblack;
@@ -141,12 +160,13 @@ select, input, textarea {
 }
 .button input{
     appearance: none;
-    width: 100px;
+    width: 125px;
     padding: 10px;
     background-color: $lincolngreen;
     border-radius: 5px;
     border: 2px solid $applegreen;
     color: $ivory;
+    font-size: 20px;
 }
 .button input:hover {
     background-color: $ivory;
@@ -188,4 +208,248 @@ select, input, textarea {
     margin-top: 20px;
     border-radius: 10px;
     color: $ivory;
+}
+.content-header {
+    text-align: center;
+}
+.product-name {
+    text-shadow: 2px 2px 4px $ivory;
+    color: $lincolngreen;
+    min-height: 100px;
+}
+.product-index {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-card {
+    width: 350px;
+    height: 640px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: $applegreen;
+    box-shadow: 2px 2px 15px 5px $onyx;
+    color: $lincolngreen;
+}
+.product-card img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    margin: auto;
+    background-color: #fff;
+    border: 5px solid #fff;
+}
+.price-tag {
+    background-color: $ivory;
+    margin: 20px;
+    padding: 20px;
+    min-width: 120px;
+    float: right;
+    color: $richblack;
+    text-align: right;
+    box-shadow: 1px 1px 2px 2px $lincolngreen;
+    border-radius: 10px;
+}
+.euros {
+    display: inline;
+}
+.cents {
+    display: inline;
+    vertical-align: top;    
+}
+.product-action {
+    width: 100%;
+    display: inline-block;
+}
+.action-button {
+    float: right;
+    appearance: none;
+    width: 125px;
+    margin: 0 20px 20px 0;
+    padding: 10px;
+    background-color: $lincolngreen;
+    color: $ivory;
+    border-radius: 5px;
+    cursor: pointer;
+    font: inherit;
+}
+.action-button:hover {
+    background-color: $ivory;
+    border: 2px solid $onyx;
+    color: $richblack;
+    transition: 0.5s;
+}
+.cart-item {
+    background-color: $applegreen;
+    border: 2px solid $lincolngreen;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    object-fit: contain;
+    background-color: #fff;
+    border: 2px solid #fff;
+}
+.cart-item h3 {
+    color: $ivory;
+    margin: 0 10px;
+    flex: 0 3 500px;
+}
+.item-amount {
+    margin-left: auto;
+    flex: 0 0 140px;
+}
+.item-amount button {
+    height: 32px;
+    width: 32px;    
+    border-radius: 50%;
+    border: 2px solid $richblack;
+    line-height: 20px;
+    background-color: $lincolngreen;
+    font-size: 20px;
+    color: $ivory;
+    cursor: pointer;
+}
+.item-amount button:hover {
+    background-color: $ivory;
+    color: $richblack;
+    border: 2px solid $lincolngreen;
+    transition: 0.5s;
+}
+.item-amount .number {
+    border: 2px solid $lincolngreen;
+    width: 55px;
+    height: 40px;
+    margin: 0 5px;
+    line-height: 10px;
+    font-size: 20px;
+}
+.item-amount .number::-webkit-inner-spin-button,
+.item-amount .number::-webkit-outer-spin-button {
+    appearance: none;
+}
+.cart-item .subtotal {
+    width: 270px;
+}
+.item-delete .fa-solid {
+    font-size: 27px;
+    color: $lincolngreen;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.item-delete .fa-solid:hover {
+    color: $ivory;
+    transition: 0.5s;
+}
+.cart-total {
+    background-color: $lincolngreen;
+    color: $ivory;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+.cart-total h3 {
+    margin: 5px;
+}
+.cart-total #item-count {
+    width: 110px;
+    margin-left: auto;
+}
+.cart-total #total-price {
+    width: 290px;
+}
+.cart-buttons {
+    // float: right;
+    display: flex;
+    justify-content: flex-end;
+}
+.product-page {
+    background-color: $applegreen;
+    border: 2px solid $lincolngreen;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.product-page-header {
+    font-size: 60px;
+    color: $ivory;
+}
+.info-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.info-row img {
+    width: 25vw;
+    height: 25vw;
+    min-width: 300px;
+    min-height: 300px;
+    object-fit: contain;
+    margin: 20px;
+    background-color: #fff;
+    border: 5px solid #fff;
+}
+.info-row .description {
+    color: $ivory;
+    text-align: left;
+    width: 25vw;
+    min-width: 300px;
+    margin: 10px 20px;
+}
+.info-row .description h1 {
+    margin-top: 0;
+}
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;  
+}
+.product-price-tag {
+    background-color: $ivory;
+    margin: 20px;
+    padding: 20px 5px;
+    width: 25vw;
+    min-width: 300px;
+    color: $richblack;
+    text-align: center;
+    box-shadow: 1px 1px 2px 2px $lincolngreen;
+    border-radius: 10px;
+}
+.product-total h3 {
+    width: 270px;
+    color: $ivory;
+    text-align: left;
+    margin: 0 20px;  
+}
+.btn-square {
+    appearance: none;
+    width: 150px;
+    margin: 20px;
+    margin-left: auto;
+    padding: 10px;
+    background-color: $lincolngreen;
+    color: $ivory;
+    border-radius: 5px;
+    cursor: pointer;
+    font: inherit;
+}
+.btn-square:hover {
+    background-color: $ivory;
+    border: 2px solid $onyx;
+    color: $richblack;
+    transition: 0.5s;
+}
+.cart-buttons button {
+    margin: 10px;
 }

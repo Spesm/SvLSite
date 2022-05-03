@@ -1,6 +1,8 @@
 <?php
 
 session_unset();
+// unset($_SESSION['username']);
+// unset($_SESSION['email']);
 header('Location:' . HOME . '/home');
 
 function showLogoutContent($render = true)

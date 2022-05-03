@@ -1,6 +1,9 @@
 <?php
 
-require_once ROOT . '/config.php';
+namespace Classes;
+
+use PDO;
+use PDOException;
 
 class DB
 {
@@ -11,8 +14,8 @@ class DB
     {
         $host = DBHOST;
         $dbname = DBNAME;
-        $user = 'root';
-        $password = '';
+        $user = DBUSER;
+        $password = DBPWD;
         $charset = DBCHARS;
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";

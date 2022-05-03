@@ -1,14 +1,23 @@
 <?php
+
 function handleRequest()
 {
     $requestMethod = $_SERVER['REQUEST_METHOD'];
+
     switch ($requestMethod) {
         case 'GET':
             $requestedPage = getFromUrl();
             break;
         case 'POST':
-            $requestedPage = getFromPost();
-            break;
+            // In case of an AJAX call to add a webshop product to the cart.
+            print_r($_POST);
+            if (isset($_POST['productId'])) {
+                addToCart($_POST['productId']);
+                exit;
+            } else {
+                $requestedPage = getFromPost();
+                break;
+            }
         default:
             $requestedPage = getFromUrl();
     }

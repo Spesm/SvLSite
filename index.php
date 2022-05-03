@@ -1,24 +1,27 @@
 <?php
 
-require_once 'scripts/request_handling.php';
-require_once 'scripts/page_building.php';
+use Classes\RequestHandler;
 
-define('ROOT', __DIR__);
-define('HOME', 'http://localhost/SvLSite');
-session_start();
+require 'vendor/autoload.php';
 
-$page = handleRequest();
-renderPage($page);
+if (empty($_SESSION)) {
+    session_start();   
+}
+
+RequestHandler::handle();
 
 function indexPages()
 {
     $pages = [
-        'home',
         'about',
+        'cart',
         'contact',
-        'register',
+        'home',
         'login',
         'logout',
+        'product',
+        'register',
+        'webshop',
     ];
     return $pages;
 }
