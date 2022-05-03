@@ -44,5 +44,7 @@ class Order extends DB
         self::prepare("INSERT INTO orders (`id`, `order`, `value`, `user`) VALUES (:id, :order, :value, :user)");        
         self::execute($orderData);
         self::destruct();
+
+        echo 'Thank you! Your order was successfully placed';
     }
 }

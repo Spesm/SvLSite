@@ -107,8 +107,9 @@ $(document).ready(function(){
             alert("We don't know who you are.\nPlease sign in or register to place your order.")
         } else {        
             $.post('http://localhost/SvLSite/index.php', {cart_order: true}, function(response) {
-                // data = JSON.parse(response)
                 alert(response)
+                destroyCart()
+                countCartItems()
             })    
         }
     })
