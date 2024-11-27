@@ -1,6 +1,6 @@
 <?php
 
-require_once 'query_pdo.php';
+require_once 'query.php';
 
 if (file_exists('../storage/users.txt')) {
     $userFile = fopen('../storage/users.txt', 'r');
@@ -13,7 +13,6 @@ if (file_exists('../storage/users.txt')) {
     $insertValues = '';
     foreach ($users as $user) {
         $user[] = createId(6);
-        $user[] = 1;
         $processed++;
         $imploded = "('" . implode("', '", $user) . "')" . ($processed < count($users) ? ", " : ";");
         $insertValues .= $imploded;
@@ -23,7 +22,7 @@ if (file_exists('../storage/users.txt')) {
 createQuery($insertValues);
 
 function createQuery($values) {
-    $insert = "INSERT IGNORE INTO users (email, username, pass, id, reg) VALUES " . $values;
+    $insert = "INSERT IGNORE INTO users (email, name, password, id) VALUES " . $values;
     qpdo($insert);
 }
 
