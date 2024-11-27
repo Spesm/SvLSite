@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "scssphp/scssphp",
-            "version": "v1.9.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "bc8bece4e5e176973a832f3763049ddbba16e6fd"
+                "reference": "63d1157457e5554edf00b0c1fabab4c1511d2520"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/bc8bece4e5e176973a832f3763049ddbba16e6fd",
-                "reference": "bc8bece4e5e176973a832f3763049ddbba16e6fd",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/63d1157457e5554edf00b0c1fabab4c1511d2520",
+                "reference": "63d1157457e5554edf00b0c1fabab4c1511d2520",
                 "shasum": ""
             },
             "require": {
@@ -33,8 +33,8 @@
                 "symfony/phpunit-bridge": "^5.1",
                 "thoughtbot/bourbon": "^7.0",
                 "twbs/bootstrap": "~5.0",
-                "twbs/bootstrap4": "4.6.0",
-                "zurb/foundation": "~6.5"
+                "twbs/bootstrap4": "4.6.1",
+                "zurb/foundation": "~6.7.0"
             },
             "suggest": {
                 "ext-iconv": "Can be used as fallback when ext-mbstring is not available",
@@ -44,6 +44,12 @@
                 "bin/pscss"
             ],
             "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "forward-command": false,
+                    "bin-links": false
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "ScssPhp\\ScssPhp\\": "src/"
@@ -76,18 +82,18 @@
             ],
             "support": {
                 "issues": "https://github.com/scssphp/scssphp/issues",
-                "source": "https://github.com/scssphp/scssphp/tree/v1.9.0"
+                "source": "https://github.com/scssphp/scssphp/tree/v1.13.0"
             },
-            "time": "2021-12-13T11:55:16+00:00"
+            "time": "2024-08-17T21:02:11+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
